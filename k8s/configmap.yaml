@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sport-activity-comparison-backend-config
+  namespace: "sport-activity"
+  labels:
+    app: nodejs-backend
+data:
+  MONGODB_CONNECTION_URL: "mongodb://user:password@77.55.208.123:30036"

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sport-activity-comparison-backend
+  namespace: "sport-activity"
+spec:
+  selector:
+    matchLabels:
+      app: sport-activity-comparison-backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sport-activity-comparison-backend
+    spec:
+      containers:
+        - name: sport-activity-comparison-backend
+          image: apociejowski/sport-activity-comparison-backend
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: sport-activity-comparison-backend-config
