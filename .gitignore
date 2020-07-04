@@ -1,2 +1,8 @@
 # Project exclude paths
 /node_modules/
+.idea/misc.xml
+.idea/modules.xml
+.idea/.gitignore
+.idea/monitor-progress-backend.iml
+.idea/vcs.xml
+.idea/workspace.xml
