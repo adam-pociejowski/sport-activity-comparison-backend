@@ -1,8 +1,7 @@
-import { ActivityRankingRequest } from "../model/activity.ranking.request.model";
+import { MongoService } from "../../mongo/service/mongo.service";
 
-export class ActivityService {
-
-    getResultRanking = (request: ActivityRankingRequest) => {
-
+export abstract class ActivityService<T> extends MongoService<T>{
+    protected constructor() {
+        super('activity', 'sport-activity');
     }
 }

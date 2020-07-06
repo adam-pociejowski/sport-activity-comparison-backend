@@ -1,4 +1,6 @@
 export enum ActivityType {
-    CYCLING = "CYCLING",
-    RUNNING = "RUNNING"
+    OUTDOOR_RIDE = "outdoor_ride",
+    VIRTUAL_RIDE = 'virtual_ride',
+    RIDE = 'ride',
+    RUN = 'run'
 }
