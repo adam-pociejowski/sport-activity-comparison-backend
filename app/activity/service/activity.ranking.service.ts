@@ -3,20 +3,19 @@ import { ActivityService } from "./activity.service";
 import { ActivityRankingItem } from "../model/activity.ranking.item.model";
 import { ActivityType } from "../model/activity.type.enum";
 
-export class ActivityRankingService extends ActivityService<ActivityRankingItem[]> {
+export class ActivityRankingService extends ActivityService {
 
     constructor() {
         super();
     }
 
-    getResultRanking = (request: ActivityRankingRequest) =>
-        this.collection
+    getResultRanking = async (request: ActivityRankingRequest) => {
+        return this.MongoModel
             .aggregate(this.preparePipeline(request))
-            .toArray()
-            .then((data: any[]) => this.mapToObject(data))
-            .catch((e: any) => console.log('Exception while aggregating data', e));
+            .then((data: any[]) => this.mapToObject(data));
+    }
 
-    protected mapToObject = (obj: any[]) =>
+    private mapToObject = (obj: any[]) =>
         obj.map((item: any) =>
             new ActivityRankingItem(
                 obj.indexOf(item) + 1,
@@ -32,20 +31,20 @@ export class ActivityRankingService extends ActivityService<ActivityRankingItem[
                 '$match': this.getMongoMatchQueryBasedOnActivityType(request.activityType)
             },
             {
-            '$addFields': {
-                'track': {
-                    '$filter': {
-                        'input': '$track',
-                        'as': 'track',
-                        'cond': {
-                            '$lte': [
-                                '$$track.distance', request.distance
-                            ]
+                '$addFields': {
+                    'track': {
+                        '$filter': {
+                            'input': '$track',
+                            'as': 'track',
+                            'cond': {
+                                '$lte': [
+                                    '$$track.distance', request.distance
+                                ]
+                            }
                         }
                     }
                 }
-            }
-        }, {
+            }, {
             '$addFields': {
                 'result': {
                     '$slice': [
@@ -91,18 +90,18 @@ export class ActivityRankingService extends ActivityService<ActivityRankingItem[
     private getMongoMatchQueryBasedOnActivityType = (activityType: ActivityType) => {
         switch (activityType) {
             case ActivityType.OUTDOOR_RIDE:
-                return { 'type': 'Ride' }
+                return {'type': 'Ride'}
             case ActivityType.VIRTUAL_RIDE:
-                return { 'type': 'VirtualRide' }
+                return {'type': 'VirtualRide'}
             case ActivityType.RIDE:
                 return {
                     '$or': [
-                        { 'type': 'Ride' },
-                        { 'type': 'VirtualRide' }
+                        {'type': 'Ride'},
+                        {'type': 'VirtualRide'}
                     ]
                 }
             case ActivityType.RUN:
-                return { 'type': 'Run' }
+                return {'type': 'Run'}
         }
     }
 }

@@ -1,19 +1,23 @@
-import {Collection, MongoClient} from 'mongodb';
+import mongoose from 'mongoose';
 
-export abstract class MongoService<T> {
-    protected mongoClient: MongoClient;
-    protected collection!: Collection;
+export class MongoService {
+    public static instance: MongoService = new MongoService();
+    private connection: any = null;
 
-    protected constructor(protected collectionName: string,
-                          protected databaseName: string) {
-        this.mongoClient = this.getMongoClient();
-        this.mongoClient.connect(() =>
-            this.collection = this.mongoClient
-                .db(this.databaseName)
-                .collection(this.collectionName));
+    private constructor() {}
+
+    public connect = () => {
+        if (this.connection === null) {
+            return mongoose
+                .connect(process.env.MONGODB_CONNECTION_URL!!, {
+                    useNewUrlParser: true,
+                    useUnifiedTopology: true
+                }).then((connection: any) => {
+                    this.connection = connection;
+                    console.log('Mongo connection success');
+                    return connection;
+                }).catch((err: any) => console.log('Exception while connection to db', err));
+        }
+        return new Promise(this.connection);
     }
-
-    protected abstract mapToObject(obj: any): T;
-
-    private getMongoClient = () => new MongoClient(process.env.MONGODB_CONNECTION_URL!!);
 }
