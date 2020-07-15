@@ -1,9 +1,34 @@
-import { SimulateRaceService } from "./simulate.race.service";
-import { UpdateRaceRequest } from "../model/update.race.request.model";
+import { UpdateRaceRequest } from "../model/request/update.race.request.model";
+import { MongoModelService } from "../../mongo/service/mongo.model.service";
+import { Schema } from "mongoose";
 
-export class UpdateRaceService extends SimulateRaceService<UpdateRaceRequest, any> {
+export class UpdateRaceService extends MongoModelService {
     constructor() {
-        super();
+        super('race-events', new Schema({
+            raceId: String,
+            stageId: String,
+            date: Date,
+            distance: Number,
+            playerEvent: {
+                location: {
+                    lat: Number,
+                    lng: Number,
+                    alt: Number
+                },
+                velocity: Number,
+                position: Number,
+                time: Number
+            },
+            npcEvents: [
+                {
+                    riderId: String,
+                    position: Number,
+                    time: Number,
+                    velocity: Number,
+                    currentCondition: Number
+                }
+            ]
+        }));
     }
 
     execute = (param: UpdateRaceRequest) =>

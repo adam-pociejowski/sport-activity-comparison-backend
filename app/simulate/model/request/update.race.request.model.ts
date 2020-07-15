@@ -1,4 +1,4 @@
-import { LocationData } from "../../activity/model/location.model";
+import { LocationData } from "../../../activity/model/location.model";
 
 export class UpdateRaceRequest {
     constructor(public raceId: number,
