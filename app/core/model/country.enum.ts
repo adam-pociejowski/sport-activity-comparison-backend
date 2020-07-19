@@ -3,5 +3,6 @@ export enum Country {
     ESP = 'ESP',
     ITA = 'ITA',
     FRA = 'FRA',
-    GER = 'GER'
+    GER = 'GER',
+    SWI = 'SWI',
 }

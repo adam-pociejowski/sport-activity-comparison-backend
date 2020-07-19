@@ -1,0 +1,57 @@
+[
+  {
+    "firstName": "Alejandro",
+    "lastName": "Valverde",
+    "country": "ESP",
+    "abilities": {
+      "flat": 74,
+      "mountain": 80,
+      "hill": 82,
+      "timeTrial": 74
+    }
+  },
+  {
+    "firstName": "Michał",
+    "lastName": "Kwiatkowski",
+    "country": "POL",
+    "abilities": {
+      "flat": 78,
+      "mountain": 75,
+      "hill": 82,
+      "timeTrial": 78
+    }
+  },
+  {
+    "firstName": "Rafał",
+    "lastName": "Majka",
+    "country": "POL",
+    "abilities": {
+      "flat": 68,
+      "mountain": 79,
+      "hill": 78,
+      "timeTrial": 72
+    }
+  },
+  {
+    "firstName": "Fabian",
+    "lastName": "Cancellara",
+    "country": "SWI",
+    "abilities": {
+      "flat": 81,
+      "mountain": 68,
+      "hill": 74,
+      "timeTrial": 83
+    }
+  },
+  {
+    "firstName": "Alberto",
+    "lastName": "Contador",
+    "country": "ESP",
+    "abilities": {
+      "flat": 69,
+      "mountain": 82,
+      "hill": 78,
+      "timeTrial": 78
+    }
+  }
+]

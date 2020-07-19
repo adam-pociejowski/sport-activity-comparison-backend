@@ -1,23 +1,25 @@
-import {InitRaceRequest} from "../model/request/init.race.request.model";
-import {MongoModelService} from "../../mongo/service/mongo.model.service";
-import {Schema} from "mongoose";
-import {RaceConfiguration} from "../model/config/race.configuration.model";
-import {v4 as uuidv4} from 'uuid';
-import {Stage} from "../model/config/stage.model";
-import {ActivityType} from "../../activity/model/activity.type.enum";
-import {RaceRider} from "../model/config/race.rider.model";
-import {Rider} from "../model/config/rider.model";
-import {Country} from "../../core/model/country.enum";
-import {RiderAbilities} from "../model/config/rider.abilities.model";
+import { InitRaceRequest } from "../model/request/init.race.request.model";
+import { MongoModelService } from "../../mongo/service/mongo.model.service";
+import { Schema } from "mongoose";
+import { RaceConfiguration } from "../model/config/race.configuration.model";
+import { v4 as uuidv4 } from 'uuid';
+import { Stage } from "../model/config/stage.model";
+import { ActivityType } from "../../activity/model/activity.type.enum";
+import { RaceRider } from "../model/config/race.rider.model";
+import { Rider } from "../model/config/rider.model";
+import { RidersService } from "./riders.service";
 
-export class InitRaceService extends MongoModelService {
+export class InitRaceService extends MongoModelService<any> {
+    private ridersService = new RidersService();
     constructor() {
         super('race-configurations', InitRaceService.getSchema());
     }
 
     execute = async (param: InitRaceRequest) => {
         let raceId = uuidv4();
-        let config = await this.MongoModel(
+        let riders: Rider[] = await this.ridersService.findAll();
+        console.log('riders', riders);
+        return this.save(
             new RaceConfiguration(
                 raceId,
                 '',
@@ -28,28 +30,29 @@ export class InitRaceService extends MongoModelService {
                 param.difficulty,
                 param.stagesDistance.map((distance: number) =>
                     new Stage(`${raceId}_${uuidv4()}`, distance, ActivityType.OUTDOOR_RIDE)),
-                [
-                    new RaceRider(
-                        new Rider(
-                            'Alejandro',
-                            'Valverde',
-                            Country.ESP,
-                            new RiderAbilities(75, 81, 82, 74)),
-                        0.8
-                    ),
-                    new RaceRider(
-                        new Rider(
-                            'Michał',
-                            'Kwiatkowski',
-                            Country.POL,
-                            new RiderAbilities(78, 76, 82, 78)),
-                        0.8
-                    )
-                ]
-            )).save();
-        console.log(config);
-        return config;
+                riders.map((rider: Rider) => new RaceRider(rider, 0.8))
+            ));
     }
+
+    mapToObject = (data: any) =>
+        new RaceConfiguration(
+            data.raceId,
+            data.name,
+            data.generateDate,
+            data.startDate,
+            data.finishDate,
+            data.showOwnResults,
+            data.difficulty,
+            data.stages.map((stage: any) =>
+                new Stage(
+                    stage.stageId,
+                    stage.distance,
+                    stage.activityType)),
+            data.riders.map((raceRider: any) =>
+                new RaceRider(
+                    this.ridersService.mapToObject(raceRider.rider),
+                    raceRider.raceCondition
+                )));
 
     private static getSchema = () =>
         new Schema({

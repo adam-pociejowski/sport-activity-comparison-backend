@@ -2,7 +2,7 @@ import { UpdateRaceRequest } from "../model/request/update.race.request.model";
 import { MongoModelService } from "../../mongo/service/mongo.model.service";
 import { Schema } from "mongoose";
 
-export class UpdateRaceService extends MongoModelService {
+export class UpdateRaceService extends MongoModelService<any> {
     constructor() {
         super('race-events', new Schema({
             raceId: String,
@@ -31,8 +31,12 @@ export class UpdateRaceService extends MongoModelService {
         }));
     }
 
+    mapToObject = (data: any) => '';
+
     execute = (param: UpdateRaceRequest) =>
         new Promise((resolve) => {
             resolve();
         });
+
+
 }
