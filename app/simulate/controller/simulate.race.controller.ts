@@ -21,7 +21,7 @@ export class SimulateRaceController {
     private initRace = (request: Request, response: Response) => {
         this.initRaceService
             .execute(request.body)
-            .then(() => response.send('OK'));
+            .then((doc: any) => response.send(doc));
     }
 
     private updateRace = (request: Request, response: Response) => {
