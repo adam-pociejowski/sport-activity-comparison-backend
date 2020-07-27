@@ -3,8 +3,17 @@ import { MongoModelService } from "../../mongo/service/mongo.model.service";
 import { Schema } from "mongoose";
 
 export class UpdateRaceService extends MongoModelService<any> {
-    constructor() {
-        super('race-events', new Schema({
+    public static INSTANCE = new UpdateRaceService();
+    private constructor() {
+        super('race-events', UpdateRaceService.getSchema());
+    }
+
+    execute = (param: UpdateRaceRequest) => {}
+
+    mapToObject = (data: any) => '';
+
+    private static getSchema() {
+        return new Schema({
             raceId: String,
             stageId: String,
             date: Date,
@@ -28,15 +37,6 @@ export class UpdateRaceService extends MongoModelService<any> {
                     currentCondition: Number
                 }
             ]
-        }));
-    }
-
-    mapToObject = (data: any) => '';
-
-    execute = (param: UpdateRaceRequest) =>
-        new Promise((resolve) => {
-            resolve();
         });
-
-
+    }
 }

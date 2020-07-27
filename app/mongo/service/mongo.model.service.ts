@@ -16,7 +16,7 @@ export abstract class MongoModelService<T> {
 
     protected constructor(schemaName: string, schemaDefinition: Schema) {
         MongoService
-            .instance
+            .INSTANCE
             .connect()
             .then((connection: any) => this.MongoModel = connection.model(schemaName, schemaDefinition, schemaName));
     }

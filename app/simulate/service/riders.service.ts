@@ -4,7 +4,8 @@ import { Rider } from "../model/config/rider.model";
 import { RiderAbilities } from "../model/config/rider.abilities.model";
 
 export class RidersService extends MongoModelService<Rider> {
-    constructor() {
+    public static INSTANCE = new RidersService();
+    private constructor() {
         super('riders', RidersService.getSchema());
     }
 
@@ -20,17 +21,18 @@ export class RidersService extends MongoModelService<Rider> {
                 data.abilities.timeTrial));
     }
 
-    private static getSchema = () =>
-        new Schema({
-                        riderId: String,
-                        firstName: String,
-                        lastName: String,
-                        country: String,
-                        abilities: {
-                            flat: Number,
-                            mountain: Number,
-                            hill: Number,
-                            timeTrial: Number
-                        }
-                    });
+    private static getSchema() {
+        return new Schema({
+            riderId: String,
+            firstName: String,
+            lastName: String,
+            country: String,
+            abilities: {
+                flat: Number,
+                mountain: Number,
+                hill: Number,
+                timeTrial: Number
+            }
+        })
+    }
 }

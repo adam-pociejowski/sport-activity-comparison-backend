@@ -1,13 +1,10 @@
 import * as express from "express";
-import { InitRaceService } from "../service/init.race.service";
+import { RaceConfigurationService } from "../service/race.configuration.service";
 import { UpdateRaceService } from "../service/update.race.service";
 import { Request, Response } from "express";
 
 export class SimulateRaceController {
     public router = express.Router();
-    private initRaceService = new InitRaceService();
-    private updateRaceService = new UpdateRaceService();
-
 
     constructor() {
         this.initRoutes();
@@ -18,15 +15,16 @@ export class SimulateRaceController {
         this.router.post('/update', this.updateRace);
     };
 
-    private initRace = (request: Request, response: Response) => {
-        this.initRaceService
-            .execute(request.body)
+    private initRace = (request: Request, response: Response) =>
+        RaceConfigurationService
+            .INSTANCE
+            .initRace(request.body)
             .then((doc: any) => response.send(doc));
-    }
 
     private updateRace = (request: Request, response: Response) => {
-        this.updateRaceService
-            .execute(request.body)
-            .then(() => response.send('OK'));
+        UpdateRaceService
+            .INSTANCE
+            .execute(request.body);
+        response.send('OK');
     }
 }

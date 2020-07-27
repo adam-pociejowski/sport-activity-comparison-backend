@@ -9,16 +9,15 @@ import { RaceRider } from "../model/config/race.rider.model";
 import { Rider } from "../model/config/rider.model";
 import { RidersService } from "./riders.service";
 
-export class InitRaceService extends MongoModelService<any> {
-    private ridersService = new RidersService();
-    constructor() {
-        super('race-configurations', InitRaceService.getSchema());
+export class RaceConfigurationService extends MongoModelService<any> {
+    public static INSTANCE = new RaceConfigurationService();
+    private constructor() {
+        super('race-configurations', RaceConfigurationService.getSchema());
     }
 
-    execute = async (param: InitRaceRequest) => {
+    initRace = async (param: InitRaceRequest) => {
         let raceId = uuidv4();
-        let riders: Rider[] = await this.ridersService.findAll();
-        console.log('riders', riders);
+        let riders: Rider[] = await RidersService.INSTANCE.findAll();
         return this.save(
             new RaceConfiguration(
                 raceId,
@@ -50,12 +49,12 @@ export class InitRaceService extends MongoModelService<any> {
                     stage.activityType)),
             data.riders.map((raceRider: any) =>
                 new RaceRider(
-                    this.ridersService.mapToObject(raceRider.rider),
+                    RidersService.INSTANCE.mapToObject(raceRider.rider),
                     raceRider.raceCondition
                 )));
 
-    private static getSchema = () =>
-        new Schema({
+    private static getSchema() {
+        return new Schema({
             raceId: String,
             name: String,
             generateDate: Date,
@@ -88,4 +87,5 @@ export class InitRaceService extends MongoModelService<any> {
                 }
             ]
         })
+    }
 }

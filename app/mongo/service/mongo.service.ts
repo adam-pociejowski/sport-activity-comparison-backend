@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 export class MongoService {
-    public static instance: MongoService = new MongoService();
+    public static INSTANCE: MongoService = new MongoService();
     private connection: any = null;
 
     private constructor() {}
@@ -18,6 +18,7 @@ export class MongoService {
                     return connection;
                 }).catch((err: any) => console.log('Exception while connection to db', err));
         }
+        console.log('Returned cached mongo connection');
         return new Promise(this.connection);
     }
 }
