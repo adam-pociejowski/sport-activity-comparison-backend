@@ -1,5 +1,6 @@
 [
   {
+    "riderId": "30abc680-3879-4217-ad87-e112f1fce211",
     "firstName": "Alejandro",
     "lastName": "Valverde",
     "country": "ESP",
@@ -11,6 +12,7 @@
     }
   },
   {
+    "riderId": "30abc680-3879-4217-ad87-e112f1fce212",
     "firstName": "Michał",
     "lastName": "Kwiatkowski",
     "country": "POL",
@@ -22,6 +24,7 @@
     }
   },
   {
+    "riderId": "30abc680-3879-4217-ad87-e112f1fce213",
     "firstName": "Rafał",
     "lastName": "Majka",
     "country": "POL",
@@ -33,6 +36,7 @@
     }
   },
   {
+    "riderId": "30abc680-3879-4217-ad87-e112f1fce214",
     "firstName": "Fabian",
     "lastName": "Cancellara",
     "country": "SWI",
@@ -44,6 +48,7 @@
     }
   },
   {
+    "riderId": "30abc680-3879-4217-ad87-e112f1fce215",
     "firstName": "Alberto",
     "lastName": "Contador",
     "country": "ESP",

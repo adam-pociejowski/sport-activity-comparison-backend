@@ -11,6 +11,7 @@ export class RidersService extends MongoModelService<Rider> {
 
     mapToObject(data: any): Rider {
         return new Rider(
+            data.riderId,
             data.firstName,
             data.lastName,
             data.country,

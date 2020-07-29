@@ -24,7 +24,7 @@ export class SimulateRaceController {
     private updateRace = (request: Request, response: Response) => {
         UpdateRaceService
             .INSTANCE
-            .execute(request.body);
+            .updateRaceState(request.body);
         response.send('OK');
     }
 }

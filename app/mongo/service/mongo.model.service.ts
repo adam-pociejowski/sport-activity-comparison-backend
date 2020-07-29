@@ -8,6 +8,10 @@ export abstract class MongoModelService<T> {
         .find({})
         .then((data: any[]) => data.map((item: any) => this.mapToObject(item)));
 
+    findByFilter = (filter: any) => this.MongoModel
+        .find(filter)
+        .then((data: any[]) => data.map((item: any) => this.mapToObject(item)));
+
     protected save = (obj: T) =>
         this.MongoModel(obj)
             .save();
