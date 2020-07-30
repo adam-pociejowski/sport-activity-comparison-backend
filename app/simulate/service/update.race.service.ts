@@ -25,7 +25,8 @@ export class UpdateRaceService extends MongoModelService<RaceEvent> {
             .limit(2)
             .then((data: any[]) => data.map((item: any) => this.mapToObject(item)));
         console.log(previousRaceEvents);
-        this.simulateRaceService.simulate(raceConfig, previousRaceEvents, request);
+        let raceEvent = this.simulateRaceService.simulate(raceConfig, previousRaceEvents, request);
+        return raceEvent;
     }
 
     mapToObject = (data: any) =>
@@ -48,6 +49,7 @@ export class UpdateRaceService extends MongoModelService<RaceEvent> {
                 .map((event: any) =>
                     new NpcRiderEvent(
                         event.riderId,
+                        event.riderName,
                         event.position,
                         event.time,
                         event.velocity,
@@ -79,6 +81,7 @@ export class UpdateRaceService extends MongoModelService<RaceEvent> {
             npcEvents: [
                 {
                     riderId: String,
+                    riderName: String,
                     position: Number,
                     time: Number,
                     velocity: Number,
