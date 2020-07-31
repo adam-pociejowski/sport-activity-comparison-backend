@@ -9,6 +9,12 @@ export class RidersService extends MongoModelService<Rider> {
         super('riders', RidersService.getSchema());
     }
 
+    public findByLimit = (limit: number) =>
+        this.MongoModel
+            .find({})
+            .limit(limit)
+            .then((data: any[]) => data.map((item: any) => this.mapToObject(item)));
+
     mapToObject(data: any): Rider {
         return new Rider(
             data.riderId,

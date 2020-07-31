@@ -15,7 +15,20 @@ export class RaceUtils {
         difficulty *
         raceRider.raceCondition *
         RaceUtils.calculateRiderAbilityFactor(raceRider.rider) *
-        ((Math.random() + 10.0) / 11.0);
+        RaceUtils.randomDouble(0.9, 1.0);
+
+    public static randomDouble = (min: number, max: number) =>
+        (max - min) * Math.random() + min;
+
+    public static calculateRiderCondition = (baseCondition: number,
+                                             maxChange: number) => {
+        let newCondition = baseCondition + RaceUtils.randomDouble(-maxChange, maxChange);
+        if (newCondition > 1.0)
+            return 1.0;
+        else if (newCondition < 0.9)
+            return 0.9;
+        return newCondition;
+    }
 
     private static calculateRiderAbilityFactor = (rider: Rider) =>
         RaceUtils.getAverageAbilityLevel(rider.abilities) / 75.0;

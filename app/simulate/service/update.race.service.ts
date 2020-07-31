@@ -19,13 +19,9 @@ export class UpdateRaceService extends MongoModelService<RaceEvent> {
 
     updateRaceState = async (request: UpdateRaceRequest) => {
         let raceConfig: RaceConfiguration = await this.findRaceConfig(request.raceId);
-        let previousRaceEvents: RaceEvent[] = await this.MongoModel
-            .find({"raceId": request.raceId})
-            .sort({"distance": 1})
-            .limit(2)
-            .then((data: any[]) => data.map((item: any) => this.mapToObject(item)));
-        console.log(previousRaceEvents);
+        let previousRaceEvents: RaceEvent[] = await this.findPreviousEvents(2, request.raceId);
         let raceEvent = this.simulateRaceService.simulate(raceConfig, request.stageId, previousRaceEvents, request);
+        this.save(raceEvent);
         return raceEvent;
     };
 
@@ -55,6 +51,14 @@ export class UpdateRaceService extends MongoModelService<RaceEvent> {
                         event.velocity,
                         event.currentCondition,
                     )));
+
+    private findPreviousEvents = (limit: number,
+                                  raceId: string) =>
+        this.MongoModel
+            .find({"raceId": raceId})
+            .sort({"distance": 1})
+            .limit(limit)
+            .then((data: any[]) => data.map((item: any) => this.mapToObject(item)));
 
     private findRaceConfig = (raceId: string) =>
         RaceConfigurationService

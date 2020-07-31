@@ -8,6 +8,7 @@ import { ActivityType } from "../../activity/model/activity.type.enum";
 import { RaceRider } from "../model/config/race.rider.model";
 import { Rider } from "../model/config/rider.model";
 import { RidersService } from "./riders.service";
+import { RaceUtils } from "../util/race.utils";
 
 export class RaceConfigurationService extends MongoModelService<any> {
     public static INSTANCE = new RaceConfigurationService();
@@ -17,19 +18,25 @@ export class RaceConfigurationService extends MongoModelService<any> {
 
     initRace = async (param: InitRaceRequest) => {
         let raceId = uuidv4();
-        let riders: Rider[] = await RidersService.INSTANCE.findAll();
+        let riders: Rider[] = await RidersService
+            .INSTANCE
+            .findByLimit(param.ridersAmount);
         return this.save(
             new RaceConfiguration(
                 raceId,
-                '',
+                param.name,
                 new Date(),
                 null,
                 null,
                 param.showMyResults,
                 param.difficulty,
-                param.stagesDistance.map((distance: number) =>
-                    new Stage(`${raceId}_${uuidv4()}`, distance, ActivityType.OUTDOOR_RIDE)),
-                riders.map((rider: Rider) => new RaceRider(rider, 0.8))
+                param
+                    .stagesDistance
+                    .map((distance: number) =>
+                        new Stage(`${raceId}_${uuidv4()}`, distance, ActivityType.OUTDOOR_RIDE)),
+                riders
+                    .map((rider: Rider) =>
+                        new RaceRider(rider, RaceUtils.randomDouble(param.raceConditionMin, param.raceConditionMax)))
             ));
     }
 
