@@ -4,16 +4,17 @@ import { RaceRider } from "../model/config/race.rider.model";
 import { NpcRiderEvent } from "../model/event/npc.rider.event.model";
 import { UpdateRaceRequest } from "../model/request/update.race.request.model";
 import { RaceUtils } from "../util/race.utils";
-import {PlayerEvent} from "../model/event/player.event.model";
+import { PlayerEvent } from "../model/event/player.event.model";
 
-export class SimulateRaceService {
+export class SimulateRaceEventService {
 
     public simulate = (raceConfig: RaceConfiguration,
+                       stageId: string,
                        events: RaceEvent[],
                        request: UpdateRaceRequest) =>
         new RaceEvent(
             raceConfig.raceId,
-            raceConfig.raceId,
+            stageId,
             new Date(),
             request.distance,
             new PlayerEvent(
@@ -34,11 +35,10 @@ export class SimulateRaceService {
                 if (lastEvent !== null) {
                     let riderEvent: NpcRiderEvent = this.findNpcRiderEvent(lastEvent, raceRider)!;
                     let velocity = RaceUtils.calculateBaseVelocity(raceConfig.difficulty, raceRider);
-                    let timeInSeconds = RaceUtils.calculateTimeInSeconds(currentDistance - lastEvent.distance, velocity);
                     return {
                         riderId: raceRider.rider.riderId,
                         riderName: `${raceRider.rider.firstName} ${raceRider.rider.lastName}`,
-                        time: riderEvent.time + timeInSeconds,
+                        time: riderEvent.time + RaceUtils.calculateTimeInSeconds(currentDistance - lastEvent.distance, velocity),
                         velocity: velocity,
                         currentCondition: riderEvent.currentCondition,
                     }
@@ -52,7 +52,7 @@ export class SimulateRaceService {
                     index + 1,
                     obj.time,
                     obj.velocity,
-                    obj.currentCondition))
+                    obj.currentCondition));
 
     private findNpcRiderEvent = (event: RaceEvent,
                                  rider: RaceRider) =>

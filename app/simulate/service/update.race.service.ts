@@ -1,17 +1,17 @@
-import {UpdateRaceRequest} from "../model/request/update.race.request.model";
-import {MongoModelService} from "../../mongo/service/mongo.model.service";
-import {Schema} from "mongoose";
-import {RaceConfigurationService} from "./race.configuration.service";
-import {RaceConfiguration} from "../model/config/race.configuration.model";
-import {RaceEvent} from "../model/event/race.event.model";
-import {PlayerEvent} from "../model/event/player.event.model";
-import {LocationData} from "../../activity/model/location.model";
-import {NpcRiderEvent} from "../model/event/npc.rider.event.model";
-import {SimulateRaceService} from "./simulate.race.service";
+import { UpdateRaceRequest } from "../model/request/update.race.request.model";
+import { MongoModelService } from "../../mongo/service/mongo.model.service";
+import { Schema } from "mongoose";
+import { RaceConfigurationService } from "./race.configuration.service";
+import { RaceConfiguration } from "../model/config/race.configuration.model";
+import { RaceEvent } from "../model/event/race.event.model";
+import { PlayerEvent } from "../model/event/player.event.model";
+import { LocationData } from "../../activity/model/location.model";
+import { NpcRiderEvent } from "../model/event/npc.rider.event.model";
+import { SimulateRaceEventService } from "./simulate.race.event.service";
 
 export class UpdateRaceService extends MongoModelService<RaceEvent> {
     public static INSTANCE = new UpdateRaceService();
-    private simulateRaceService = new SimulateRaceService();
+    private simulateRaceService = new SimulateRaceEventService();
 
     private constructor() {
         super('race-events', UpdateRaceService.getSchema());
@@ -25,9 +25,9 @@ export class UpdateRaceService extends MongoModelService<RaceEvent> {
             .limit(2)
             .then((data: any[]) => data.map((item: any) => this.mapToObject(item)));
         console.log(previousRaceEvents);
-        let raceEvent = this.simulateRaceService.simulate(raceConfig, previousRaceEvents, request);
+        let raceEvent = this.simulateRaceService.simulate(raceConfig, request.stageId, previousRaceEvents, request);
         return raceEvent;
-    }
+    };
 
     mapToObject = (data: any) =>
         new RaceEvent(
