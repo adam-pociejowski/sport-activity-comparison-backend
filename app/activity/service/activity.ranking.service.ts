@@ -3,6 +3,7 @@ import { ActivityRankingItem } from "../model/activity.ranking.item.model";
 import { ActivityType } from "../model/activity.type.enum";
 import { MongoModelService } from "../../mongo/service/mongo.model.service";
 import { Schema } from "mongoose";
+import { ActivityRankingItemInfo } from "../model/activity.ranking.item.info.model";
 
 export class ActivityRankingService extends MongoModelService<any>  {
 
@@ -41,13 +42,11 @@ export class ActivityRankingService extends MongoModelService<any>  {
 
     mapToObject = (obj: any[]) =>
         obj.map((item: any) =>
-            new ActivityRankingItem(
+            new ActivityRankingItem<ActivityRankingItemInfo>(
                 obj.indexOf(item) + 1,
-                item.name,
+                new ActivityRankingItemInfo(item.name, item.startDate),
                 item.type,
-                item.time,
-                item.averageSpeed,
-                item.startDate));
+                item.time));
 
     private preparePipeline = (request: ActivityRankingRequest) =>
         [

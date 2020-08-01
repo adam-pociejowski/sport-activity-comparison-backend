@@ -20,7 +20,6 @@ export class SimulateRaceEventService {
             new PlayerEvent(
                 request.location,
                 10.0,
-                1,
                 request.time
             ),
             this.simulateNpcEvents(raceConfig, this.getLastEvent(events), request.distance)
@@ -31,8 +30,7 @@ export class SimulateRaceEventService {
                                  currentDistance: number) =>
         raceConfig
             .riders
-            .map((raceRider: RaceRider) => this.generateNextEventData(lastEvent, raceRider, raceConfig.difficulty, currentDistance))
-            .sort((event1: NpcRiderEvent, event2: NpcRiderEvent) => event1.time - event2.time);
+            .map((raceRider: RaceRider) => this.generateNextEventData(lastEvent, raceRider, raceConfig.difficulty, currentDistance));
 
     private generateNextEventData = (lastEvent: RaceEvent | null,
                                      raceRider: RaceRider,

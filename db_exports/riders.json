@@ -1,6 +1,6 @@
 [
   {
-    "riderId": "30abc680-3879-4217-ad87-e112f1fce211",
+    "riderId": "37a1c884b-6274-4d61-a6b6-4298b8fa509c",
     "firstName": "Alejandro",
     "lastName": "Valverde",
     "country": "ESP",
@@ -12,7 +12,7 @@
     }
   },
   {
-    "riderId": "30abc680-3879-4217-ad87-e112f1fce212",
+    "riderId": "6d4aa4e1-7027-413f-b75d-9a33bed45d7f",
     "firstName": "Michał",
     "lastName": "Kwiatkowski",
     "country": "POL",
@@ -24,7 +24,7 @@
     }
   },
   {
-    "riderId": "30abc680-3879-4217-ad87-e112f1fce213",
+    "riderId": "331faf85-e30b-42d2-a043-dfcc787d9f49",
     "firstName": "Rafał",
     "lastName": "Majka",
     "country": "POL",
@@ -36,7 +36,7 @@
     }
   },
   {
-    "riderId": "30abc680-3879-4217-ad87-e112f1fce214",
+    "riderId": "368b50ab-6f24-4408-a025-18978e6b1275",
     "firstName": "Fabian",
     "lastName": "Cancellara",
     "country": "SWI",
@@ -48,7 +48,7 @@
     }
   },
   {
-    "riderId": "30abc680-3879-4217-ad87-e112f1fce215",
+    "riderId": "49cf880b-fa1c-45a1-9748-d2a1246c4cf6",
     "firstName": "Alberto",
     "lastName": "Contador",
     "country": "ESP",
@@ -57,6 +57,66 @@
       "mountain": 82,
       "hill": 78,
       "timeTrial": 78
+    }
+  },
+  {
+    "riderId": "66efb85a-6fea-467a-9bbf-50055e2ba099",
+    "firstName": "Nairo",
+    "lastName": "Quintana",
+    "country": "COL",
+    "abilities": {
+      "flat": 67,
+      "mountain": 82,
+      "hill": 77,
+      "timeTrial": 68
+    }
+  },
+  {
+    "riderId": "445ad1e6-4e69-4c6f-a41a-52757818c875",
+    "firstName": "Tom",
+    "lastName": "Boonen",
+    "country": "BEL",
+    "abilities": {
+      "flat": 81,
+      "mountain": 62,
+      "hill": 68,
+      "timeTrial": 71
+    }
+  },
+  {
+    "riderId": "5e7b2506-64b5-4ad3-8d22-244be8384264",
+    "firstName": "Roman",
+    "lastName": "Kreuziger",
+    "country": "CZE",
+    "abilities": {
+      "flat": 67,
+      "mountain": 78,
+      "hill": 73,
+      "timeTrial": 74
+    }
+  },
+  {
+    "riderId": "bf72154d-a052-4596-95e4-71a4701c3435",
+    "firstName": "Levi",
+    "lastName": "Leipheimer",
+    "country": "USA",
+    "abilities": {
+      "flat": 77,
+      "mountain": 77,
+      "hill": 72,
+      "timeTrial": 81
+    }
+  },
+  {
+    "riderId": "c125a0b0-1884-43fb-8f6b-92b1a79b0cdd",
+    "firstName": "Bradley",
+    "lastName": "Wiggins",
+    "country": "GBR",
+    "abilities": {
+      "flat": 76,
+      "mountain": 76,
+      "hill": 75,
+      "timeTrial": 82
     }
   }
 ]

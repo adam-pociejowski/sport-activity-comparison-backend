@@ -5,4 +5,9 @@ export enum Country {
     FRA = 'FRA',
     GER = 'GER',
     SWI = 'SWI',
+    COL = 'COL',
+    BEL = 'BEL',
+    CZE = 'CZE',
+    USA = 'USA',
+    GBR = 'GBR',
 }

@@ -8,6 +8,8 @@ import { PlayerEvent } from "../model/event/player.event.model";
 import { LocationData } from "../../activity/model/location.model";
 import { NpcRiderEvent } from "../model/event/npc.rider.event.model";
 import { SimulateRaceEventService } from "./simulate.race.event.service";
+import { RaceRider } from "../model/config/race.rider.model";
+import { ActivityRankingConverter } from "../../activity/converter/activity.ranking.converter";
 
 export class UpdateRaceService extends MongoModelService<RaceEvent> {
     public static INSTANCE = new UpdateRaceService();
@@ -22,7 +24,7 @@ export class UpdateRaceService extends MongoModelService<RaceEvent> {
         let previousRaceEvents: RaceEvent[] = await this.findPreviousEvents(2, request.raceId);
         let raceEvent = this.simulateRaceService.simulate(raceConfig, request.stageId, previousRaceEvents, request);
         this.save(raceEvent);
-        return raceEvent;
+        return ActivityRankingConverter.fromRaceEvent(this.prepareRaceRidersMap(raceConfig.riders), raceEvent);
     };
 
     mapToObject = (data: any) =>
@@ -38,7 +40,6 @@ export class UpdateRaceService extends MongoModelService<RaceEvent> {
                     data.playerEvent.location.alt
                 ),
                 data.playerEvent.velocity,
-                data.playerEvent.position,
                 data.playerEvent.time
             ),
             data.npcEvents
@@ -49,6 +50,13 @@ export class UpdateRaceService extends MongoModelService<RaceEvent> {
                         event.velocity,
                         event.currentCondition,
                     )));
+
+    public prepareRaceRidersMap = (raceRiders: RaceRider[]) => {
+        let raceRidersMap = new Map<string, RaceRider>();
+        raceRiders
+            .forEach((raceRider: RaceRider) => raceRidersMap.set(raceRider.rider.riderId, raceRider));
+        return raceRidersMap;
+    }
 
     private findPreviousEvents = (limit: number,
                                   raceId: string) =>
@@ -77,13 +85,11 @@ export class UpdateRaceService extends MongoModelService<RaceEvent> {
                     alt: Number
                 },
                 velocity: Number,
-                position: Number,
                 time: Number
             },
             npcEvents: [
                 {
                     riderId: String,
-                    position: Number,
                     time: Number,
                     velocity: Number,
                     currentCondition: Number

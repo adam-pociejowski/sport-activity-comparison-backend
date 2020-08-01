@@ -5,6 +5,7 @@ import { ActivityRankingService } from "../service/activity.ranking.service";
 import { ActivityRankingItem } from "../model/activity.ranking.item.model";
 import { ActivityRanking } from "../model/activity.ranking.model";
 import { ActivityType } from "../model/activity.type.enum";
+import { ActivityRankingItemInfo } from "../model/activity.ranking.item.info.model";
 
 export class ActivityRestController {
     public router = express.Router();
@@ -23,8 +24,8 @@ export class ActivityRestController {
             let activityRequest = new ActivityRankingRequest(request.params.activityType as ActivityType, +request.params.distance);
             this.activityRankingService
                 .getResultRanking(activityRequest)
-                .then((ranking: ActivityRankingItem[] | void) => new ActivityRanking(ranking, activityRequest.distance, activityRequest.activityType))
-                .then((ranking: ActivityRanking | void) => response.send(ranking))
+                .then((ranking: ActivityRankingItem<ActivityRankingItemInfo>[] | void) => new ActivityRanking(ranking, activityRequest.distance))
+                .then((ranking: ActivityRanking<ActivityRankingItemInfo> | void) => response.send(ranking))
                 .catch((e: any) => {
                     console.log('Exception while aggregating data', e);
                     response.send(e);
