@@ -45,8 +45,6 @@ export class UpdateRaceService extends MongoModelService<RaceEvent> {
                 .map((event: any) =>
                     new NpcRiderEvent(
                         event.riderId,
-                        event.riderName,
-                        event.position,
                         event.time,
                         event.velocity,
                         event.currentCondition,
@@ -85,7 +83,6 @@ export class UpdateRaceService extends MongoModelService<RaceEvent> {
             npcEvents: [
                 {
                     riderId: String,
-                    riderName: String,
                     position: Number,
                     time: Number,
                     velocity: Number,
