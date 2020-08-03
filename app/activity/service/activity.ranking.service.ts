@@ -44,7 +44,7 @@ export class ActivityRankingService extends MongoModelService<any>  {
         obj.map((item: any) =>
             new ActivityRankingItem<ActivityRankingItemInfo>(
                 new ActivityRankingItemInfo(item.name, item.startDate),
-                item.type,
+                this.toActivityType(item.type),
                 item.time));
 
     private preparePipeline = (request: ActivityRankingRequest) =>
@@ -104,6 +104,19 @@ export class ActivityRankingService extends MongoModelService<any>  {
                 "type": 1
             }
         }];
+
+    private toActivityType = (stravaType: string) => {
+        switch (stravaType) {
+            case 'Ride':
+                return ActivityType.OUTDOOR_RIDE;
+            case 'VirtualRide':
+                return ActivityType.VIRTUAL_RIDE;
+            case 'Run':
+                return ActivityType.RUN;
+            default:
+                return ActivityType.RIDE;
+        }
+    }
 
     private getMongoMatchQueryBasedOnActivityType = (activityType: ActivityType) => {
         switch (activityType) {

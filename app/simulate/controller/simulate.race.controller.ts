@@ -2,7 +2,8 @@ import * as express from "express";
 import { RaceConfigurationService } from "../service/race.configuration.service";
 import { UpdateRaceService } from "../service/update.race.service";
 import { Request, Response } from "express";
-import {RaceEvent} from "../model/event/race.event.model";
+import { ActivityRanking } from "../../activity/model/activity.ranking.model";
+import { RankingItemRaceEvent } from "../model/ranking/ranking.item.race.event";
 
 export class SimulateRaceController {
     public router = express.Router();
@@ -27,7 +28,7 @@ export class SimulateRaceController {
         UpdateRaceService
             .INSTANCE
             .updateRaceState(request.body)
-            .then((raceEvent: RaceEvent) => response.send(raceEvent))
+            .then((ranking: ActivityRanking<RankingItemRaceEvent>) => response.send(ranking))
             .catch((error: any) => response.send(error));
     }
 }
