@@ -1,4 +1,4 @@
 export class ActivityRankingItemInfo {
-    public constructor(name: string,
-                       date: string) {}
+    public constructor(public name: string,
+                       public date: string) {}
 }

@@ -43,7 +43,6 @@ export class ActivityRankingService extends MongoModelService<any>  {
     mapToObject = (obj: any[]) =>
         obj.map((item: any) =>
             new ActivityRankingItem<ActivityRankingItemInfo>(
-                obj.indexOf(item) + 1,
                 new ActivityRankingItemInfo(item.name, item.startDate),
                 item.type,
                 item.time));
@@ -103,10 +102,6 @@ export class ActivityRankingService extends MongoModelService<any>  {
                 'averageSpeed': 1,
                 'startDate': 1,
                 "type": 1
-            }
-        }, {
-            '$sort': {
-                'time': 1
             }
         }];
 

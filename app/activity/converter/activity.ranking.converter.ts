@@ -16,10 +16,8 @@ export class ActivityRankingConverter {
                 .appendPlayerRankingItem(
                     ActivityRankingConverter
                         .mapNpcRankingItems(raceRidersMap, raceEvent.npcEvents), raceEvent.playerEvent)
-                .sort((item1: RankingItem, item2: RankingItem) => item1.timeInSec - item2.timeInSec)
-                .map((rankingItem: RankingItem, index: number) =>
+                .map((rankingItem: RankingItem) =>
                     new ActivityRankingItem<RankingItemRaceEvent>(
-                        index + 1,
                         rankingItem.info,
                         rankingItem.activityType,
                         rankingItem.timeInSec
