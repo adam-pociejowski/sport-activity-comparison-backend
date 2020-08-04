@@ -6,4 +6,4 @@ metadata:
   labels:
     app: nodejs-backend
 data:
-  MONGODB_CONNECTION_URL: "mongodb://user:password@77.55.208.123:30036"
+  MONGODB_CONNECTION_URL: "mongodb://user:password@77.55.208.123:30036/sport-activity?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&ssl=false"
