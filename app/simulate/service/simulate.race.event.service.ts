@@ -30,23 +30,23 @@ export class SimulateRaceEventService {
                                  currentDistance: number) =>
         raceConfig
             .riders
-            .map((raceRider: RaceRider) => this.generateNextEventData(lastEvent, raceRider, raceConfig.difficulty, currentDistance));
+            .map((raceRider: RaceRider) => this.generateNextEventData(lastEvent, raceRider, raceConfig, currentDistance));
 
     private generateNextEventData = (lastEvent: RaceEvent | null,
                                      raceRider: RaceRider,
-                                     difficulty: number,
+                                     raceConfig: RaceConfiguration,
                                      currentDistance: number) => {
         let riderEvent = lastEvent !== null ?
             this.findNpcRiderEvent(lastEvent, raceRider)! :
             null;
         let previousTime = riderEvent !== null ? riderEvent.time : 0.0;
         let previousDistance = lastEvent !== null ? lastEvent.distance : 0.0;
-        let velocity = RaceUtils.calculateBaseVelocity(difficulty, raceRider);
+        let velocity = RaceUtils.calculateBaseVelocity(raceConfig, raceRider, riderEvent);
         return new NpcRiderEvent(
             raceRider.rider.riderId,
             previousTime + RaceUtils.calculateTimeInSeconds(currentDistance - previousDistance, velocity),
             velocity,
-            RaceUtils.calculateRiderCondition(riderEvent !== null ? riderEvent.currentCondition : 0.95, 0.02));
+            RaceUtils.calculateRiderCondition(riderEvent !== null ? riderEvent.currentCondition : 1.0, raceConfig.maxRiderCurrentConditionChangePerEvent));
     }
 
     private findNpcRiderEvent = (event: RaceEvent,

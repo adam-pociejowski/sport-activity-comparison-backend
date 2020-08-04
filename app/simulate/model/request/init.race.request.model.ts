@@ -7,6 +7,8 @@ export class InitRaceRequest {
                 public ridersAmount: number,
                 public showMyResults: boolean,
                 public activityType: ActivityType,
-                public raceConditionMin: number,
-                public raceConditionMax: number) {}
+                public riderRaceConditionVariability: number,
+                public riderCurrentConditionVariability: number,
+                public maxRiderCurrentConditionChangePerEvent: number,
+                public randomFactorVariability: number) {}
 }

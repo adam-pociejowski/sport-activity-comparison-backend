@@ -17,6 +17,7 @@ export class RaceConfigurationService extends MongoModelService<any> {
     }
 
     initRace = async (param: InitRaceRequest) => {
+        console.log(param);
         let raceId = uuidv4();
         let riders: Rider[] = await RidersService
             .INSTANCE
@@ -30,13 +31,16 @@ export class RaceConfigurationService extends MongoModelService<any> {
                 null,
                 param.showMyResults,
                 param.difficulty,
+                param.riderCurrentConditionVariability,
+                param.maxRiderCurrentConditionChangePerEvent,
+                param.randomFactorVariability,
                 param
                     .stagesDistance
                     .map((distance: number) =>
                         new Stage(`${raceId}_${uuidv4()}`, distance, ActivityType.OUTDOOR_RIDE)),
                 riders
                     .map((rider: Rider) =>
-                        new RaceRider(rider, RaceUtils.randomDouble(param.raceConditionMin, param.raceConditionMax)))
+                        new RaceRider(rider, RaceUtils.randomDouble(1.0 - param.riderRaceConditionVariability, 1.0)))
             ));
     }
 
@@ -49,6 +53,9 @@ export class RaceConfigurationService extends MongoModelService<any> {
             data.finishDate,
             data.showOwnResults,
             data.difficulty,
+            data.riderCurrentConditionVariability,
+            data.maxRiderCurrentConditionChangePerEvent,
+            data.randomFactorVariability,
             data.stages.map((stage: any) =>
                 new Stage(
                     stage.stageId,
@@ -69,6 +76,9 @@ export class RaceConfigurationService extends MongoModelService<any> {
             finishDate: Date,
             showOwnResults: Boolean,
             difficulty: Number,
+            riderCurrentConditionVariability: Number,
+            maxRiderCurrentConditionChangePerEvent: Number,
+            randomFactorVariability: Number,
             stages: [
                 {
                     stageId: String,

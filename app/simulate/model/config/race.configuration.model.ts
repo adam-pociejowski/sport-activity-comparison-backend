@@ -9,6 +9,9 @@ export class RaceConfiguration {
                 public finishDate: Date | null,
                 public showOwnResults: boolean,
                 public difficulty: number,
+                public riderCurrentConditionVariability: number,
+                public maxRiderCurrentConditionChangePerEvent: number,
+                public randomFactorVariability: number,
                 public stages: Stage[],
                 public riders: RaceRider[]) {}
 }

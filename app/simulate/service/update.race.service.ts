@@ -20,6 +20,7 @@ export class UpdateRaceService extends MongoModelService<RaceEvent> {
     }
 
     updateRaceState = async (request: UpdateRaceRequest) => {
+        console.log(request);
         let raceConfig: RaceConfiguration = await this.findRaceConfig(request.raceId);
         let previousRaceEvents: RaceEvent[] = await this.findPreviousEvents(2, request.raceId);
         let raceEvent = this.simulateRaceService.simulate(raceConfig, request.stageId, previousRaceEvents, request);
@@ -35,9 +36,10 @@ export class UpdateRaceService extends MongoModelService<RaceEvent> {
             data.distance,
             new PlayerEvent(
                 new LocationData(
-                    data.playerEvent.location.lat,
-                    data.playerEvent.location.lng,
-                    data.playerEvent.location.alt
+                    data.playerEvent.location.latitude,
+                    data.playerEvent.location.longitude,
+                    data.playerEvent.location.accuracy,
+                    data.playerEvent.location.altitude
                 ),
                 data.playerEvent.velocity,
                 data.playerEvent.time
@@ -80,9 +82,10 @@ export class UpdateRaceService extends MongoModelService<RaceEvent> {
             distance: Number,
             playerEvent: {
                 location: {
-                    lat: Number,
-                    lng: Number,
-                    alt: Number
+                    latitude: Number,
+                    longitude: Number,
+                    accuracy: Number,
+                    altitude: Number
                 },
                 velocity: Number,
                 time: Number

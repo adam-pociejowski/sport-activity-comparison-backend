@@ -10,4 +10,6 @@ export enum Country {
     CZE = 'CZE',
     USA = 'USA',
     GBR = 'GBR',
+    KAZ = 'KAZ',
+    NED = 'NED'
 }

@@ -101,10 +101,10 @@
     "lastName": "Leipheimer",
     "country": "USA",
     "abilities": {
-      "flat": 77,
+      "flat": 75,
       "mountain": 77,
-      "hill": 72,
-      "timeTrial": 81
+      "hill": 71,
+      "timeTrial": 80
     }
   },
   {
@@ -115,8 +115,80 @@
     "abilities": {
       "flat": 76,
       "mountain": 76,
-      "hill": 75,
+      "hill": 72,
       "timeTrial": 82
+    }
+  },
+  {
+    "riderId": "2830959e-ed94-4c2a-ae86-3bfb1c7c07cb",
+    "firstName": "Tony",
+    "lastName": "Martin",
+    "country": "GER",
+    "abilities": {
+      "flat": 78,
+      "mountain": 72,
+      "hill": 72,
+      "timeTrial": 81
+    }
+  },
+  {
+    "riderId": "a0842714-32c5-407a-b63c-bc538d857dd8",
+    "firstName": "Samuel",
+    "lastName": "Sanchez",
+    "country": "ESP",
+    "abilities": {
+      "flat": 74,
+      "mountain": 79,
+      "hill": 78,
+      "timeTrial": 72
+    }
+  },
+  {
+    "riderId": "14ce27dc-9e38-444d-ab8c-a752a754a887",
+    "firstName": "Alexandre",
+    "lastName": "Vinokourov",
+    "country": "KAZ",
+    "abilities": {
+      "flat": 75,
+      "mountain": 80,
+      "hill": 80,
+      "timeTrial": 78
+    }
+  },
+  {
+    "riderId": "720bdbef-f405-415d-a413-9388f43f08f5",
+    "firstName": "Vincenzo",
+    "lastName": "Nibali",
+    "country": "ITA",
+    "abilities": {
+      "flat": 72,
+      "mountain": 81,
+      "hill": 78,
+      "timeTrial": 77
+    }
+  },
+  {
+    "riderId": "513d1e82-194e-499e-a32f-9663ac6427ef",
+    "firstName": "Robert",
+    "lastName": "Gesink",
+    "country": "NED",
+    "abilities": {
+      "flat": 68,
+      "mountain": 78,
+      "hill": 75,
+      "timeTrial": 72
+    }
+  },
+  {
+    "riderId": "c5a90c11-5557-489f-853e-325660da5e0e",
+    "firstName": "Joaquim",
+    "lastName": "Rodriguez",
+    "country": "ESP",
+    "abilities": {
+      "flat": 70,
+      "mountain": 79,
+      "hill": 78,
+      "timeTrial": 69
     }
   }
 ]
