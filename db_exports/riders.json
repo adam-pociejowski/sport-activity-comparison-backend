@@ -17,10 +17,10 @@
     "lastName": "Kwiatkowski",
     "country": "POL",
     "abilities": {
-      "flat": 78,
-      "mountain": 75,
+      "flat": 75,
+      "mountain": 74,
       "hill": 82,
-      "timeTrial": 78
+      "timeTrial": 77
     }
   },
   {
@@ -30,9 +30,9 @@
     "country": "POL",
     "abilities": {
       "flat": 68,
-      "mountain": 79,
-      "hill": 78,
-      "timeTrial": 72
+      "mountain": 78,
+      "hill": 77,
+      "timeTrial": 71
     }
   },
   {
@@ -67,8 +67,8 @@
     "abilities": {
       "flat": 67,
       "mountain": 82,
-      "hill": 77,
-      "timeTrial": 68
+      "hill": 78,
+      "timeTrial": 69
     }
   },
   {
@@ -101,10 +101,10 @@
     "lastName": "Leipheimer",
     "country": "USA",
     "abilities": {
-      "flat": 75,
+      "flat": 72,
       "mountain": 77,
       "hill": 71,
-      "timeTrial": 80
+      "timeTrial": 79
     }
   },
   {
@@ -113,9 +113,9 @@
     "lastName": "Wiggins",
     "country": "GBR",
     "abilities": {
-      "flat": 76,
-      "mountain": 76,
-      "hill": 72,
+      "flat": 72,
+      "mountain": 77,
+      "hill": 73,
       "timeTrial": 82
     }
   },
@@ -125,8 +125,8 @@
     "lastName": "Martin",
     "country": "GER",
     "abilities": {
-      "flat": 78,
-      "mountain": 72,
+      "flat": 77,
+      "mountain": 71,
       "hill": 72,
       "timeTrial": 81
     }
@@ -137,10 +137,10 @@
     "lastName": "Sanchez",
     "country": "ESP",
     "abilities": {
-      "flat": 74,
+      "flat": 73,
       "mountain": 79,
       "hill": 78,
-      "timeTrial": 72
+      "timeTrial": 71
     }
   },
   {
@@ -149,7 +149,7 @@
     "lastName": "Vinokourov",
     "country": "KAZ",
     "abilities": {
-      "flat": 75,
+      "flat": 72,
       "mountain": 80,
       "hill": 80,
       "timeTrial": 78
@@ -161,7 +161,7 @@
     "lastName": "Nibali",
     "country": "ITA",
     "abilities": {
-      "flat": 72,
+      "flat": 69,
       "mountain": 81,
       "hill": 78,
       "timeTrial": 77
@@ -174,9 +174,9 @@
     "country": "NED",
     "abilities": {
       "flat": 68,
-      "mountain": 78,
-      "hill": 75,
-      "timeTrial": 72
+      "mountain": 77,
+      "hill": 74,
+      "timeTrial": 70
     }
   },
   {
@@ -189,6 +189,414 @@
       "mountain": 79,
       "hill": 78,
       "timeTrial": 69
+    }
+  },
+  {
+    "riderId": "79371327-7929-4ae6-aab6-8b7d7233e890",
+    "firstName": "Andy",
+    "lastName": "Schleck",
+    "country": "LUX",
+    "abilities": {
+      "flat": 67,
+      "mountain": 82,
+      "hill": 78,
+      "timeTrial": 68
+    }
+  },
+  {
+    "riderId": "5fbe59fb-4f8b-44a3-b88a-95ba4d9443f4",
+    "firstName": "Denis",
+    "lastName": "Menchov",
+    "country": "RUS",
+    "abilities": {
+      "flat": 66,
+      "mountain": 79,
+      "hill": 74,
+      "timeTrial": 76
+    }
+  },
+  {
+    "riderId": "33e077fe-3862-4caf-8901-17024b10c438",
+    "firstName": "Jurgen",
+    "lastName": "Ven Den Broeck",
+    "country": "BEL",
+    "abilities": {
+      "flat": 68,
+      "mountain": 77,
+      "hill": 74,
+      "timeTrial": 71
+    }
+  },
+  {
+    "riderId": "2de99114-4596-456c-b0c2-8a0f548e76cc",
+    "firstName": "Ryder",
+    "lastName": "Hesjedal",
+    "country": "CAN",
+    "abilities": {
+      "flat": 67,
+      "mountain": 77,
+      "hill": 76,
+      "timeTrial": 72
+    }
+  },
+  {
+    "riderId": "a8da20d6-303e-42ab-9572-1fc3016095d4",
+    "firstName": "Damiano",
+    "lastName": "Cunego",
+    "country": "ITA",
+    "abilities": {
+      "flat": 68,
+      "mountain": 76,
+      "hill": 76,
+      "timeTrial": 70
+    }
+  },
+  {
+    "riderId": "c491aa91-024f-4833-90e2-3e0549f3b425",
+    "firstName": "Ruben",
+    "lastName": "Plaza",
+    "country": "ESP",
+    "abilities": {
+      "flat": 67,
+      "mountain": 75,
+      "hill": 74,
+      "timeTrial": 69
+    }
+  },
+  {
+    "riderId": "ed085030-8073-4526-93b3-f4eb000ba721",
+    "firstName": "Michele",
+    "lastName": "Scarponi",
+    "country": "ITA",
+    "abilities": {
+      "flat": 67,
+      "mountain": 78,
+      "hill": 77,
+      "timeTrial": 73
+    }
+  },
+  {
+    "riderId": "a19efa6e-aeb2-4d68-86e1-009a667bb4a7",
+    "firstName": "Andreas",
+    "lastName": "Kloden",
+    "country": "GER",
+    "abilities": {
+      "flat": 66,
+      "mountain": 78,
+      "hill": 73,
+      "timeTrial": 75
+    }
+  },
+  {
+    "riderId": "203103ae-afcd-4855-8c60-c422a5759233",
+    "firstName": "Nicolas",
+    "lastName": "Roche",
+    "country": "IRE",
+    "abilities": {
+      "flat": 68,
+      "mountain": 76,
+      "hill": 74,
+      "timeTrial": 73
+    }
+  },
+  {
+    "riderId": "67906e6e-354b-4f82-87b8-acaba3342c7c",
+    "firstName": "Thomas",
+    "lastName": "Lofkvist",
+    "country": "SWE",
+    "abilities": {
+      "flat": 67,
+      "mountain": 75,
+      "hill": 74,
+      "timeTrial": 72
+    }
+  },
+  {
+    "riderId": "1333079b-9069-4af3-adda-82f0dc3ab3ed",
+    "firstName": "Christophe",
+    "lastName": "Moreau",
+    "country": "FRA",
+    "abilities": {
+      "flat": 67,
+      "mountain": 76,
+      "hill": 73,
+      "timeTrial": 71
+    }
+  },
+  {
+    "riderId": "4a2688f3-12ec-4f08-a571-c980a50d278e",
+    "firstName": "Ivan",
+    "lastName": "Basso",
+    "country": "ITA",
+    "abilities": {
+      "flat": 67,
+      "mountain": 81,
+      "hill": 77,
+      "timeTrial": 73
+    }
+  },
+  {
+    "riderId": "f557f5bd-1f7f-487e-8454-1b2836d2dd57",
+    "firstName": "Carlos",
+    "lastName": "Sastre",
+    "country": "ESP",
+    "abilities": {
+      "flat": 67,
+      "mountain": 79,
+      "hill": 75,
+      "timeTrial": 68
+    }
+  },
+  {
+    "riderId": "6daa1096-3ed5-455d-9dff-9edb102cd30e",
+    "firstName": "Sergio Miguel",
+    "lastName": "Paulinho",
+    "country": "POR",
+    "abilities": {
+      "flat": 69,
+      "mountain": 73,
+      "hill": 74,
+      "timeTrial": 71
+    }
+  },
+  {
+    "riderId": "8a4e157f-f981-40fa-a8cc-3c92728b7daf",
+    "firstName": "Marco",
+    "lastName": "Pinotti",
+    "country": "ITA",
+    "abilities": {
+      "flat": 67,
+      "mountain": 75,
+      "hill": 73,
+      "timeTrial": 72
+    }
+  },
+  {
+    "riderId": "dc9fa92d-110d-49c2-b377-83e68e852b1c",
+    "firstName": "Bauke",
+    "lastName": "Mollema",
+    "country": "NED",
+    "abilities": {
+      "flat": 68,
+      "mountain": 76,
+      "hill": 74,
+      "timeTrial": 71
+    }
+  },
+  {
+    "riderId": "1697a4b8-0e77-4c73-8a3e-7907ba3fcab5",
+    "firstName": "Paolo",
+    "lastName": "Savoldelli",
+    "country": "ITA",
+    "abilities": {
+      "flat": 69,
+      "mountain": 77,
+      "hill": 74,
+      "timeTrial": 76
+    }
+  },
+  {
+    "riderId": "4efc62ef-70bf-49b7-a57e-2e261af81e96",
+    "firstName": "Vladimir",
+    "lastName": "Karpets",
+    "country": "RUS",
+    "abilities": {
+      "flat": 67,
+      "mountain": 75,
+      "hill": 73,
+      "timeTrial": 69
+    }
+  },
+  {
+    "riderId": "5b5f53bf-1431-4c79-bbb0-5308e3eced07",
+    "firstName": "Richie",
+    "lastName": "Porte",
+    "country": "AUS",
+    "abilities": {
+      "flat": 70,
+      "mountain": 78,
+      "hill": 76,
+      "timeTrial": 75
+    }
+  },
+  {
+    "riderId": "c0f4b93a-0d4a-42bd-90d2-aa4972b948dd",
+    "firstName": "Cadel",
+    "lastName": "Evans",
+    "country": "AUS",
+    "abilities": {
+      "flat": 71,
+      "mountain": 80,
+      "hill": 79,
+      "timeTrial": 76
+    }
+  },
+  {
+    "riderId": "2ee12238-0a34-4b5a-94ce-462fcb50755b",
+    "firstName": "José Rodolfo",
+    "lastName": "Serpa",
+    "country": "COL",
+    "abilities": {
+      "flat": 65,
+      "mountain": 75,
+      "hill": 73,
+      "timeTrial": 65
+    }
+  },
+  {
+    "riderId": "3da1616a-e4de-4cd1-8192-1d2086ce4720",
+    "firstName": "Rigoberto",
+    "lastName": "Uran",
+    "country": "COL",
+    "abilities": {
+      "flat": 67,
+      "mountain": 79,
+      "hill": 76,
+      "timeTrial": 67
+    }
+  },
+  {
+    "riderId": "1702897e-16d6-4341-9e7b-835023e42a09",
+    "firstName": "Vasil",
+    "lastName": "Kiryienka",
+    "country": "BRE",
+    "abilities": {
+      "flat": 71,
+      "mountain": 76,
+      "hill": 73,
+      "timeTrial": 75
+    }
+  },
+  {
+    "riderId": "d3a8c8be-9061-4848-99b1-c29cd0bded4a",
+    "firstName": "Phillipe",
+    "lastName": "Gilbert",
+    "country": "BEL",
+    "abilities": {
+      "flat": 73,
+      "mountain": 67,
+      "hill": 82,
+      "timeTrial": 72
+    }
+  },
+  {
+    "riderId": "885ad83c-4107-4156-9c55-991bcd5ae978",
+    "firstName": "Sylvester",
+    "lastName": "Szmyd",
+    "country": "POL",
+    "abilities": {
+      "flat": 66,
+      "mountain": 76,
+      "hill": 73,
+      "timeTrial": 67
+    }
+  },
+  {
+    "riderId": "2354b208-7f9c-4d67-8e1e-4a5a6f55195b",
+    "firstName": "Marek",
+    "lastName": "Rutkiewicz",
+    "country": "POL",
+    "abilities": {
+      "flat": 66,
+      "mountain": 73,
+      "hill": 72,
+      "timeTrial": 69
+    }
+  },
+  {
+    "riderId": "b6254e40-25c3-44c7-a1b5-73c3b8ba573f",
+    "firstName": "Frank",
+    "lastName": "Schleck",
+    "country": "LUX",
+    "abilities": {
+      "flat": 72,
+      "mountain": 77,
+      "hill": 81,
+      "timeTrial": 67
+    }
+  },
+  {
+    "riderId": "9316f0b3-ee22-48ef-814a-9d384a1963c7",
+    "firstName": "Daniel",
+    "lastName": "Moreno",
+    "country": "ESP",
+    "abilities": {
+      "flat": 66,
+      "mountain": 76,
+      "hill": 73,
+      "timeTrial": 67
+    }
+  },
+  {
+    "riderId": "3b01a5c6-2a51-44ee-85ae-97ac4e8006fe",
+    "firstName": "Pieter",
+    "lastName": "Weening",
+    "country": "NED",
+    "abilities": {
+      "flat": 67,
+      "mountain": 76,
+      "hill": 72,
+      "timeTrial": 68
+    }
+  },
+  {
+    "riderId": "dd5fcc6f-9208-4e81-9ea0-07f38a54f94e",
+    "firstName": "Thor",
+    "lastName": "Hushovd",
+    "country": "NOR",
+    "abilities": {
+      "flat": 80,
+      "mountain": 67,
+      "hill": 70,
+      "timeTrial": 72
+    }
+  },
+  {
+    "riderId": "b8c581ae-472e-48c6-a671-9454b33b6441",
+    "firstName": "Juan Antonio",
+    "lastName": "Flecha",
+    "country": "ESP",
+    "abilities": {
+      "flat": 74,
+      "mountain": 67,
+      "hill": 77,
+      "timeTrial": 69
+    }
+  },
+  {
+    "riderId": "56440b1b-f93c-4aba-b903-e7afe59ec6ce",
+    "firstName": "Bjorn",
+    "lastName": "Leukemans",
+    "country": "BEL",
+    "abilities": {
+      "flat": 78,
+      "mountain": 66,
+      "hill": 73,
+      "timeTrial": 71
+    }
+  },
+  {
+    "riderId": "c035ed6b-4b7b-4c7c-a89a-4fe06300db2f",
+    "firstName": "Filippo",
+    "lastName": "Pozzato",
+    "country": "ITA",
+    "abilities": {
+      "flat": 76,
+      "mountain": 68,
+      "hill": 73,
+      "timeTrial": 69
+    }
+  },
+  {
+    "riderId": "8d2519b3-bb42-4d21-bae7-5a658c629223",
+    "firstName": "Leif",
+    "lastName": "Hoste",
+    "country": "BEL",
+    "abilities": {
+      "flat": 74,
+      "mountain": 65,
+      "hill": 72,
+      "timeTrial": 66
     }
   }
 ]
