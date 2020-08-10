@@ -34,6 +34,7 @@ export class RaceConfigurationService extends MongoModelService<any> {
                 param.riderCurrentConditionVariability,
                 param.maxRiderCurrentConditionChangePerEvent,
                 param.randomFactorVariability,
+                param.resultsScattering,
                 param
                     .stagesDistance
                     .map((distance: number) =>
@@ -56,6 +57,7 @@ export class RaceConfigurationService extends MongoModelService<any> {
             data.riderCurrentConditionVariability,
             data.maxRiderCurrentConditionChangePerEvent,
             data.randomFactorVariability,
+            data.resultsScattering,
             data.stages.map((stage: any) =>
                 new Stage(
                     stage.stageId,
@@ -79,6 +81,7 @@ export class RaceConfigurationService extends MongoModelService<any> {
             riderCurrentConditionVariability: Number,
             maxRiderCurrentConditionChangePerEvent: Number,
             randomFactorVariability: Number,
+            resultsScattering: Number,
             stages: [
                 {
                     stageId: String,

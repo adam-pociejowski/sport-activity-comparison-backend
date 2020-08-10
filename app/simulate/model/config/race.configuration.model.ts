@@ -12,6 +12,7 @@ export class RaceConfiguration {
                 public riderCurrentConditionVariability: number,
                 public maxRiderCurrentConditionChangePerEvent: number,
                 public randomFactorVariability: number,
+                public resultsScattering: number,
                 public stages: Stage[],
                 public riders: RaceRider[]) {}
 }

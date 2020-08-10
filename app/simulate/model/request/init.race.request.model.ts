@@ -10,5 +10,6 @@ export class InitRaceRequest {
                 public riderRaceConditionVariability: number,
                 public riderCurrentConditionVariability: number,
                 public maxRiderCurrentConditionChangePerEvent: number,
-                public randomFactorVariability: number) {}
+                public randomFactorVariability: number,
+                public resultsScattering: number) {}
 }

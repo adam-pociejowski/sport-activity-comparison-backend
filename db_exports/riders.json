@@ -31,7 +31,7 @@
     "abilities": {
       "flat": 68,
       "mountain": 78,
-      "hill": 77,
+      "hill": 76,
       "timeTrial": 71
     }
   },
@@ -65,10 +65,10 @@
     "lastName": "Quintana",
     "country": "COL",
     "abilities": {
-      "flat": 67,
+      "flat": 68,
       "mountain": 82,
-      "hill": 78,
-      "timeTrial": 69
+      "hill": 79,
+      "timeTrial": 70
     }
   },
   {
@@ -101,10 +101,10 @@
     "lastName": "Leipheimer",
     "country": "USA",
     "abilities": {
-      "flat": 72,
+      "flat": 70,
       "mountain": 77,
       "hill": 71,
-      "timeTrial": 79
+      "timeTrial": 78
     }
   },
   {
@@ -127,7 +127,7 @@
     "abilities": {
       "flat": 77,
       "mountain": 71,
-      "hill": 72,
+      "hill": 68,
       "timeTrial": 81
     }
   },
@@ -149,10 +149,10 @@
     "lastName": "Vinokourov",
     "country": "KAZ",
     "abilities": {
-      "flat": 72,
+      "flat": 71,
       "mountain": 80,
       "hill": 80,
-      "timeTrial": 78
+      "timeTrial": 77
     }
   },
   {
@@ -197,10 +197,10 @@
     "lastName": "Schleck",
     "country": "LUX",
     "abilities": {
-      "flat": 67,
+      "flat": 68,
       "mountain": 82,
-      "hill": 78,
-      "timeTrial": 68
+      "hill": 79,
+      "timeTrial": 69
     }
   },
   {
@@ -413,9 +413,9 @@
     "lastName": "Porte",
     "country": "AUS",
     "abilities": {
-      "flat": 70,
+      "flat": 68,
       "mountain": 78,
-      "hill": 76,
+      "hill": 75,
       "timeTrial": 75
     }
   },
@@ -459,12 +459,12 @@
     "riderId": "1702897e-16d6-4341-9e7b-835023e42a09",
     "firstName": "Vasil",
     "lastName": "Kiryienka",
-    "country": "BRE",
+    "country": "BLR",
     "abilities": {
-      "flat": 71,
+      "flat": 68,
       "mountain": 76,
       "hill": 73,
-      "timeTrial": 75
+      "timeTrial": 74
     }
   },
   {
@@ -510,9 +510,9 @@
     "country": "LUX",
     "abilities": {
       "flat": 72,
-      "mountain": 77,
+      "mountain": 78,
       "hill": 81,
-      "timeTrial": 67
+      "timeTrial": 68
     }
   },
   {
@@ -593,7 +593,7 @@
     "lastName": "Hoste",
     "country": "BEL",
     "abilities": {
-      "flat": 74,
+      "flat": 78,
       "mountain": 65,
       "hill": 72,
       "timeTrial": 66

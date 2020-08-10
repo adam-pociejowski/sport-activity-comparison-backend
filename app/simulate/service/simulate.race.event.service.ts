@@ -41,12 +41,18 @@ export class SimulateRaceEventService {
             null;
         let previousTime = riderEvent !== null ? riderEvent.time : 0.0;
         let previousDistance = lastEvent !== null ? lastEvent.distance : 0.0;
-        let velocity = RaceUtils.calculateBaseVelocity(raceConfig, raceRider, riderEvent);
+        let { velocity, power } = RaceUtils.calculateBaseVelocity(raceConfig, raceRider, riderEvent);
         return new NpcRiderEvent(
             raceRider.rider.riderId,
             previousTime + RaceUtils.calculateTimeInSeconds(currentDistance - previousDistance, velocity),
             velocity,
-            RaceUtils.calculateRiderCondition(riderEvent !== null ? riderEvent.currentCondition : 1.0, raceConfig.maxRiderCurrentConditionChangePerEvent));
+            power,
+            RaceUtils.calculateRiderCondition(
+                riderEvent !== null ?
+                    riderEvent.currentCondition :
+                    1.0,
+                raceConfig.maxRiderCurrentConditionChangePerEvent,
+                raceConfig.riderCurrentConditionVariability));
     }
 
     private findNpcRiderEvent = (event: RaceEvent,
