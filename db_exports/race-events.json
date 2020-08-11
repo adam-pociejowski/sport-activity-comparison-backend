@@ -1,0 +1,98 @@
+[
+  {
+    "raceId": "30abc680-3879-4217-ad87-e112f1fce211",
+    "stageId": "30abc680-3879-4217-ad87-e112f1fce211",
+    "date": "2020-07-16T13:38:44.601+00:00",
+    "distance": 12.3,
+    "playerEvent": {
+      "location": {
+        "lat": 1231.23,
+        "lng": 1231.23,
+        "alt": 1231.23
+      },
+      "velocity": 12.3,
+      "position": 1,
+      "time": 122
+    },
+    "npcEvents": [
+      {
+        "riderId": "30abc680-3879-4217-ad87-e112f1fce211",
+        "position": 2,
+        "time": 123,
+        "velocity": 22.3,
+        "currentCondition": 0.9
+      },
+      {
+        "riderId": "30abc680-3879-4217-ad87-e112f1fce212",
+        "position": 3,
+        "time": 125,
+        "velocity": 24.3,
+        "currentCondition": 0.91
+      }
+    ]
+  },
+  {
+    "raceId": "30abc680-3879-4217-ad87-e112f1fce211",
+    "stageId": "30abc680-3879-4217-ad87-e112f1fce211",
+    "date": "2020-07-16T13:38:44.601+00:00",
+    "distance": 17.3,
+    "playerEvent": {
+      "location": {
+        "lat": 1231.23,
+        "lng": 1231.23,
+        "alt": 1231.23
+      },
+      "velocity": 12.3,
+      "position": 1,
+      "time": 122
+    },
+    "npcEvents": [
+      {
+        "riderId": "30abc680-3879-4217-ad87-e112f1fce211",
+        "position": 2,
+        "time": 123,
+        "velocity": 22.3,
+        "currentCondition": 0.9
+      },
+      {
+        "riderId": "30abc680-3879-4217-ad87-e112f1fce212",
+        "position": 3,
+        "time": 125,
+        "velocity": 24.3,
+        "currentCondition": 0.91
+      }
+    ]
+  },
+  {
+    "raceId": "30abc680-3879-4217-ad87-e112f1fce211",
+    "stageId": "30abc680-3879-4217-ad87-e112f1fce211",
+    "date": "2020-07-16T13:38:44.601+00:00",
+    "distance": 21.3,
+    "playerEvent": {
+      "location": {
+        "lat": 1231.23,
+        "lng": 1231.23,
+        "alt": 1231.23
+      },
+      "velocity": 12.3,
+      "position": 1,
+      "time": 122
+    },
+    "npcEvents": [
+      {
+        "riderId": "30abc680-3879-4217-ad87-e112f1fce211",
+        "position": 2,
+        "time": 123,
+        "velocity": 22.3,
+        "currentCondition": 0.9
+      },
+      {
+        "riderId": "30abc680-3879-4217-ad87-e112f1fce212",
+        "position": 3,
+        "time": 125,
+        "velocity": 24.3,
+        "currentCondition": 0.91
+      }
+    ]
+  }
+]

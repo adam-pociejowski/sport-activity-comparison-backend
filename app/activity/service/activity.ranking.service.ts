@@ -1,12 +1,37 @@
 import { ActivityRankingRequest } from "../model/activity.ranking.request.model";
-import { ActivityService } from "./activity.service";
 import { ActivityRankingItem } from "../model/activity.ranking.item.model";
 import { ActivityType } from "../model/activity.type.enum";
+import { MongoModelService } from "../../mongo/service/mongo.model.service";
+import { Schema } from "mongoose";
+import { ActivityRankingItemInfo } from "../model/activity.ranking.item.info.model";
 
-export class ActivityRankingService extends ActivityService {
+export class ActivityRankingService extends MongoModelService<any>  {
 
     constructor() {
-        super();
+        super(
+            'activity',
+            new Schema({
+                id: String,
+                name: String,
+                distance: Number,
+                movingTime: Number,
+                elapsedTime: Number,
+                type: String,
+                averageSpeed: Number,
+                maxSpeed: Number,
+                startDate: Date,
+                track: [
+                    {
+                        location: {
+                            lat: Number,
+                            lng: Number
+                        },
+                        time: Number,
+                        distance: Number,
+                        velocity: Number
+                    }
+                ]
+            }));
     }
 
     getResultRanking = async (request: ActivityRankingRequest) => {
@@ -15,15 +40,12 @@ export class ActivityRankingService extends ActivityService {
             .then((data: any[]) => this.mapToObject(data));
     }
 
-    private mapToObject = (obj: any[]) =>
+    mapToObject = (obj: any[]) =>
         obj.map((item: any) =>
-            new ActivityRankingItem(
-                obj.indexOf(item) + 1,
-                item.name,
-                item.type,
-                item.time,
-                item.averageSpeed,
-                item.startDate));
+            new ActivityRankingItem<ActivityRankingItemInfo>(
+                new ActivityRankingItemInfo(item.name, item.startDate),
+                this.toActivityType(item.type),
+                item.time));
 
     private preparePipeline = (request: ActivityRankingRequest) =>
         [
@@ -81,11 +103,20 @@ export class ActivityRankingService extends ActivityService {
                 'startDate': 1,
                 "type": 1
             }
-        }, {
-            '$sort': {
-                'time': 1
-            }
         }];
+
+    private toActivityType = (stravaType: string) => {
+        switch (stravaType) {
+            case 'Ride':
+                return ActivityType.OUTDOOR_RIDE;
+            case 'VirtualRide':
+                return ActivityType.VIRTUAL_RIDE;
+            case 'Run':
+                return ActivityType.RUN;
+            default:
+                return ActivityType.RIDE;
+        }
+    }
 
     private getMongoMatchQueryBasedOnActivityType = (activityType: ActivityType) => {
         switch (activityType) {

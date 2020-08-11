@@ -1,8 +1,7 @@
-export class ActivityRankingItem {
-    constructor(public readonly position: number,
-                public readonly activityName: string,
-                public readonly stravaActivityType: string,
-                public readonly timeInSec: number,
-                public readonly avgSpeed: number,
-                public readonly date: string) {}
+import { ActivityType } from "./activity.type.enum";
+
+export class ActivityRankingItem<T> {
+    constructor(public readonly info: T,
+                public readonly activityType: ActivityType,
+                public readonly timeInSec: number) {}
 }
