@@ -4,15 +4,15 @@ import { MongoService } from "./mongo.service";
 export abstract class MongoModelService<T> {
     protected MongoModel: any;
 
-    findAll = () => this.MongoModel
+    public findAll = () => this.MongoModel
         .find({})
         .then((data: any[]) => data.map((item: any) => this.mapToObject(item)));
 
-    findByFilter = (filter: any) => this.MongoModel
+    public findByFilter = (filter: any) => this.MongoModel
         .find(filter)
         .then((data: any[]) => data.map((item: any) => this.mapToObject(item)));
 
-    protected save = (obj: T) =>
+    public save = (obj: T) =>
         this.MongoModel(obj)
             .save();
 

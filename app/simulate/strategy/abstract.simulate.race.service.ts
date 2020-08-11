@@ -1,51 +1,29 @@
-import { RaceEvent } from "../model/event/race.event.model";
 import { RaceConfiguration } from "../model/config/race.configuration.model";
+import { RaceEvent } from "../model/event/race.event.model";
+import { Stage } from "../model/config/stage.model";
 import { RaceRider } from "../model/config/race.rider.model";
-import { NpcRiderEvent } from "../model/event/npc.rider.event.model";
-import { UpdateRaceRequest } from "../model/request/update.race.request.model";
 import { RaceUtils } from "../util/race.utils";
-import { PlayerEvent } from "../model/event/player.event.model";
-import {Stage} from "../model/config/stage.model";
+import { NpcRiderEvent } from "../model/event/npc.rider.event.model";
+import { RaceEventService } from "../service/race.event.service";
 
-export class SimulateRaceEventService {
+export abstract class AbstractSimulateRaceService {
 
-    public simulate = (raceConfig: RaceConfiguration,
-                       stageId: string,
-                       events: RaceEvent[],
-                       request: UpdateRaceRequest) => {
-        return new RaceEvent(
-            raceConfig.raceId,
-            stageId,
-            new Date(),
-            request.distance,
-            new PlayerEvent(
-                request.location,
-                10.0,
-                request.time
-            ),
-            this.simulateNpcEvents(
-                raceConfig,
-                this.getLastEvent(events),
-                request.distance,
-                raceConfig
-                    .stages
-                    .find((stage: Stage) => stage.stageId === stageId)!)
-        );
-    }
-
-
-    private simulateNpcEvents = (raceConfig: RaceConfiguration,
-                                 lastEvent: RaceEvent | null,
-                                 currentDistance: number,
-                                 stage: Stage) =>
+    protected simulateNpcEvents = (raceConfig: RaceConfiguration,
+                                   currentDistance: number,
+                                   stage: Stage) =>
         raceConfig
             .riders
             .map((raceRider: RaceRider) => this.generateNextEventData(
-                lastEvent,
+                this.getLastEvent(
+                    RaceEventService
+                        .INSTANCE
+                        .findPreviousEvents(1, raceConfig.raceId)),
                 raceRider,
                 raceConfig,
                 currentDistance,
                 stage));
+
+    private getLastEvent = (events: RaceEvent[]) => events.length == 0 ? null : events[events.length - 1];
 
     private generateNextEventData = (lastEvent: RaceEvent | null,
                                      raceRider: RaceRider,
@@ -71,14 +49,8 @@ export class SimulateRaceEventService {
                 raceConfig.riderCurrentConditionVariability));
     }
 
-    private findNpcRiderEvent = (event: RaceEvent,
-                                 rider: RaceRider) =>
+    private findNpcRiderEvent = (event: RaceEvent, rider: RaceRider) =>
         event
             .npcEvents
             .find((npcRider: NpcRiderEvent) => npcRider.riderId === rider.rider.riderId);
-
-    private getLastEvent = (events: RaceEvent[]) =>
-        events.length == 0 ?
-            null :
-            events[events.length - 1];
 }
