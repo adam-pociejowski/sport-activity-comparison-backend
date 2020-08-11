@@ -9,6 +9,7 @@ import { RaceRider } from "../model/config/race.rider.model";
 import { Rider } from "../model/config/rider.model";
 import { RidersService } from "./riders.service";
 import { RaceUtils } from "../util/race.utils";
+import { RiderAbilities } from "../model/config/rider.abilities.model";
 
 export class RaceConfigurationService extends MongoModelService<any> {
     public static INSTANCE = new RaceConfigurationService();
@@ -36,9 +37,13 @@ export class RaceConfigurationService extends MongoModelService<any> {
                 param.randomFactorVariability,
                 param.resultsScattering,
                 param
-                    .stagesDistance
-                    .map((distance: number) =>
-                        new Stage(`${raceId}_${uuidv4()}`, distance, ActivityType.OUTDOOR_RIDE)),
+                    .stages
+                    .map((stage: Stage) =>
+                        new Stage(
+                            `${raceId}_${uuidv4()}`,
+                            stage.distance,
+                            stage.abilitiesFactor,
+                            ActivityType.OUTDOOR_RIDE)),
                 riders
                     .map((rider: Rider) =>
                         new RaceRider(rider, RaceUtils.randomDouble(1.0 - param.riderRaceConditionVariability, 1.0)))
@@ -62,6 +67,12 @@ export class RaceConfigurationService extends MongoModelService<any> {
                 new Stage(
                     stage.stageId,
                     stage.distance,
+                    new RiderAbilities(
+                        stage.abilitiesFactor.flat,
+                        stage.abilitiesFactor.mountain,
+                        stage.abilitiesFactor.hill,
+                        stage.abilitiesFactor.timeTrial
+                    ),
                     stage.activityType)),
             data.riders.map((raceRider: any) =>
                 new RaceRider(
@@ -86,6 +97,12 @@ export class RaceConfigurationService extends MongoModelService<any> {
                 {
                     stageId: String,
                     distance: Number,
+                    abilitiesFactor: {
+                        flat: Number,
+                        mountain: Number,
+                        hill: Number,
+                        timeTrial: Number
+                    },
                     activityType: String
                 }
             ],

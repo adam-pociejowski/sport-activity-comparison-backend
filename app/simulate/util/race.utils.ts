@@ -3,6 +3,7 @@ import { Rider } from "../model/config/rider.model";
 import { RiderAbilities } from "../model/config/rider.abilities.model";
 import { RaceConfiguration } from "../model/config/race.configuration.model";
 import { NpcRiderEvent } from "../model/event/npc.rider.event.model";
+import { Stage } from "../model/config/stage.model";
 
 export class RaceUtils {
     private static BASE_VELOCITY: number = 60.0;
@@ -27,7 +28,8 @@ export class RaceUtils {
 
     public static calculateBaseVelocity = (config: RaceConfiguration,
                                            rider: RaceRider,
-                                           event: NpcRiderEvent | null) => {
+                                           event: NpcRiderEvent | null,
+                                           stage: Stage) => {
         let power = RaceUtils
             .applyScatterFactor(
                 RaceUtils
@@ -42,13 +44,12 @@ export class RaceUtils {
             velocity: RaceUtils.BASE_VELOCITY *
                 config.difficulty *
                 RaceUtils.applyScatterFactor(
-                    RaceUtils.calculateRiderAbilityFactor(rider.rider),
+                    RaceUtils.calculateRiderAbilityFactor(rider.rider, stage),
                     config.resultsScattering) *
                 power,
             power: power
         };
     }
-
 
     private static applyScatterFactor = (factor: number,
                                          scatterFactor: number) => {
@@ -65,9 +66,12 @@ export class RaceUtils {
         RaceUtils.randomDouble(1.0 - config.randomFactorVariability, 1.0) *
         currentRiderCondition;
 
-    private static calculateRiderAbilityFactor = (rider: Rider) =>
-        RaceUtils.getAverageAbilityLevel(rider.abilities) / 75.0;
+    private static calculateRiderAbilityFactor = (rider: Rider, stage: Stage) =>
+        RaceUtils.getAbilityFactor(rider.abilities, stage.abilitiesFactor) / 75.0;
 
-    private static getAverageAbilityLevel = (abilities: RiderAbilities) =>
-        (abilities.flat  + abilities.mountain + abilities.hill + abilities.timeTrial) / 4;
+    private static getAbilityFactor = (abilities: RiderAbilities, factors: RiderAbilities) =>
+            (abilities.flat * factors.flat +
+            abilities.mountain * factors.mountain +
+            abilities.hill * factors.hill +
+            abilities.timeTrial * factors.timeTrial) / 4;
 }
