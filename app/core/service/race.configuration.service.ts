@@ -1,53 +1,15 @@
-import { InitRaceRequest } from "../model/request/init.race.request.model";
-import { MongoModelService } from "../../mongo/service/mongo.model.service";
+import { MongoModelService } from "./mongo.model.service";
 import { Schema } from "mongoose";
-import { RaceConfiguration } from "../model/config/race.configuration.model";
-import { v4 as uuidv4 } from 'uuid';
-import { Stage } from "../model/config/stage.model";
-import { ActivityType } from "../../activity/model/activity.type.enum";
-import { RaceRider } from "../model/config/race.rider.model";
-import { Rider } from "../model/config/rider.model";
+import { RaceConfiguration } from "../../simulate/model/config/race.configuration.model";
+import { Stage } from "../../simulate/model/config/stage.model";
+import { RaceRider } from "../../simulate/model/config/race.rider.model";
 import { RidersService } from "./riders.service";
-import { RaceUtils } from "../util/race.utils";
-import { RiderAbilities } from "../model/config/rider.abilities.model";
+import { RiderAbilities } from "../../simulate/model/config/rider.abilities.model";
 
-export class RaceConfigurationService extends MongoModelService<any> {
+export class RaceConfigurationService extends MongoModelService<RaceConfiguration> {
     public static INSTANCE = new RaceConfigurationService();
     private constructor() {
         super('race-configurations', RaceConfigurationService.getSchema());
-    }
-
-    initRace = async (param: InitRaceRequest) => {
-        console.log(param);
-        let raceId = uuidv4();
-        let riders: Rider[] = await RidersService
-            .INSTANCE
-            .findByLimit(param.ridersAmount);
-        return this.save(
-            new RaceConfiguration(
-                raceId,
-                param.name,
-                new Date(),
-                null,
-                null,
-                param.raceMode,
-                param.difficulty,
-                param.riderCurrentConditionVariability,
-                param.maxRiderCurrentConditionChangePerEvent,
-                param.randomFactorVariability,
-                param.resultsScattering,
-                param
-                    .stages
-                    .map((stage: Stage) =>
-                        new Stage(
-                            `${raceId}_${uuidv4()}`,
-                            stage.distance,
-                            stage.abilitiesFactor,
-                            ActivityType.OUTDOOR_RIDE)),
-                riders
-                    .map((rider: Rider) =>
-                        new RaceRider(rider, RaceUtils.randomDouble(1.0 - param.riderRaceConditionVariability, 1.0)))
-            ));
     }
 
     mapToObject = (data: any) =>
@@ -57,7 +19,6 @@ export class RaceConfigurationService extends MongoModelService<any> {
             data.generateDate,
             data.startDate,
             data.finishDate,
-            data.raceMode,
             data.difficulty,
             data.riderCurrentConditionVariability,
             data.maxRiderCurrentConditionChangePerEvent,
@@ -87,7 +48,6 @@ export class RaceConfigurationService extends MongoModelService<any> {
             generateDate: Date,
             startDate: Date,
             finishDate: Date,
-            raceMode: String,
             difficulty: Number,
             riderCurrentConditionVariability: Number,
             maxRiderCurrentConditionChangePerEvent: Number,

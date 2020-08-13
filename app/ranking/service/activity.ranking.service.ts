@@ -1,11 +1,11 @@
-import { ActivityRankingRequest } from "../model/activity.ranking.request.model";
-import { ActivityRankingItem } from "../model/activity.ranking.item.model";
-import { ActivityType } from "../model/activity.type.enum";
-import { MongoModelService } from "../../mongo/service/mongo.model.service";
+import { ActivityRankingRequest } from "../model/activity/activity.ranking.request.model";
+import { ActivityRankingItem } from "../model/activity/activity.ranking.item.model";
+import { ActivityType } from "../model/activity/activity.type.enum";
+import { MongoModelService } from "../../core/service/mongo.model.service";
 import { Schema } from "mongoose";
-import { ActivityRankingItemInfo } from "../model/activity.ranking.item.info.model";
+import { ActivityRankingItemInfo } from "../model/activity/activity.ranking.item.info.model";
 
-export class ActivityRankingService extends MongoModelService<any>  {
+export class ActivityRankingService extends MongoModelService<ActivityRankingItem<ActivityRankingItemInfo>[]>  {
 
     constructor() {
         super(

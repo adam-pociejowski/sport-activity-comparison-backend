@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import * as express from 'express';
-import { ActivityRankingRequest } from "../model/activity.ranking.request.model";
+import { ActivityRankingRequest } from "../model/activity/activity.ranking.request.model";
 import { ActivityRankingService } from "../service/activity.ranking.service";
-import { ActivityRankingItem } from "../model/activity.ranking.item.model";
-import { ActivityRanking } from "../model/activity.ranking.model";
-import { ActivityType } from "../model/activity.type.enum";
-import { ActivityRankingItemInfo } from "../model/activity.ranking.item.info.model";
+import { ActivityRankingItem } from "../model/activity/activity.ranking.item.model";
+import { ActivityRanking } from "../model/activity/activity.ranking.model";
+import { ActivityType } from "../model/activity/activity.type.enum";
+import { ActivityRankingItemInfo } from "../model/activity/activity.ranking.item.info.model";
 
 export class ActivityRestController {
     public router = express.Router();

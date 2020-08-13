@@ -1,7 +1,7 @@
-import { MongoModelService } from "../../mongo/service/mongo.model.service";
+import { MongoModelService } from "./mongo.model.service";
 import { Schema } from "mongoose";
-import { Rider } from "../model/config/rider.model";
-import { RiderAbilities } from "../model/config/rider.abilities.model";
+import { Rider } from "../../simulate/model/config/rider.model";
+import { RiderAbilities } from "../../simulate/model/config/rider.abilities.model";
 
 export class RidersService extends MongoModelService<Rider> {
     public static INSTANCE = new RidersService();

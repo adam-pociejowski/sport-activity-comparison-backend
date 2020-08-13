@@ -1,33 +1,27 @@
 import { UpdateRaceRequest } from "../model/request/update.race.request.model";
-import { RaceConfigurationService } from "./race.configuration.service";
+import { RaceConfigurationService } from "../../core/service/race.configuration.service";
 import { RaceConfiguration } from "../model/config/race.configuration.model";
-import { RaceRider } from "../model/config/race.rider.model";
-import { ActivityRankingConverter } from "../../activity/converter/activity.ranking.converter";
-import { RaceEventService } from "./race.event.service";
-import { SimulateRaceStrategyFactory } from "../strategy/simulate.race.strategy.factory";
+import { RaceEventService } from "../../core/service/race.event.service";
+import { NPCSimulateRaceService } from "./npc.simulate.race.service";
+import { RaceRankingServiceFactory } from "../../ranking/service/race.ranking.service.factory";
 
 export class UpdateRaceService {
     public static INSTANCE = new UpdateRaceService();
     private constructor() {}
 
-    updateRaceState = async (request: UpdateRaceRequest) => {
-        console.log(request);
-        let raceConfig: RaceConfiguration = await this.findRaceConfig(request.raceId);
-        let raceEvent = SimulateRaceStrategyFactory
-            .fromRaceMode(raceConfig.raceMode)
-            .simulate(raceConfig, request);
-        RaceEventService
-            .INSTANCE
-            .save(raceEvent);
-        return ActivityRankingConverter.fromRaceEvent(this.prepareRaceRidersMap(raceConfig.riders), raceEvent);
+    updateRaceState = async (req: UpdateRaceRequest) => {
+        try {
+            console.log(req);
+            let config: RaceConfiguration = await this.findRaceConfig(req.raceId);
+            let event = NPCSimulateRaceService.INSTANCE.simulate(config, req);
+            RaceEventService.INSTANCE.save(event);
+            return RaceRankingServiceFactory
+                .fromRankingType(req.rankingType)
+                .generate(event, config);
+        } catch (e) {
+            console.log(e);
+        }
     };
-
-    public prepareRaceRidersMap = (raceRiders: RaceRider[]) => {
-        let raceRidersMap = new Map<string, RaceRider>();
-        raceRiders
-            .forEach((raceRider: RaceRider) => raceRidersMap.set(raceRider.rider.riderId, raceRider));
-        return raceRidersMap;
-    }
 
     private findRaceConfig = (raceId: string) =>
         RaceConfigurationService

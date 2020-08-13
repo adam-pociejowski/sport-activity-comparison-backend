@@ -1,9 +1,9 @@
 import * as express from "express";
-import { RaceConfigurationService } from "../service/race.configuration.service";
 import { UpdateRaceService } from "../service/update.race.service";
 import { Request, Response } from "express";
-import { ActivityRanking } from "../../activity/model/activity.ranking.model";
-import { RankingItemRaceEvent } from "../model/ranking/ranking.item.race.event";
+import { ActivityRanking } from "../../ranking/model/activity/activity.ranking.model";
+import { RankingItemRaceEvent } from "../../ranking/model/race/ranking.item.race.event";
+import { RaceInitService } from "../service/race.init.service";
 
 export class SimulateRaceController {
     public router = express.Router();
@@ -18,9 +18,9 @@ export class SimulateRaceController {
     };
 
     private initRace = (request: Request, response: Response) =>
-        RaceConfigurationService
+        RaceInitService
             .INSTANCE
-            .initRace(request.body)
+            .init(request.body)
             .then((doc: any) => response.send(doc))
             .catch((error: any) => response.send(error));
 

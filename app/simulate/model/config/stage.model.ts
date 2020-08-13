@@ -1,4 +1,4 @@
-import { ActivityType } from "../../../activity/model/activity.type.enum";
+import { ActivityType } from "../../../ranking/model/activity/activity.type.enum";
 import { RiderAbilities } from "./rider.abilities.model";
 
 export class Stage {

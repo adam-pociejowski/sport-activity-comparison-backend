@@ -1,4 +1,4 @@
-import { ActivityRestController } from "./activity/controller/activity.rest.controller";
+import { ActivityRestController } from "./ranking/controller/activity.rest.controller";
 import {SimulateRaceController} from "./simulate/controller/simulate.race.controller";
 
 module.exports = function(app: any) {

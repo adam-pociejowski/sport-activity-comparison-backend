@@ -1,0 +1,5 @@
+export enum RankingType {
+    ONLY_NPC = "ONLY_NPC",
+    PLAYER_NPC = "PLAYER_NPC",
+    PLAYER_NPC_WITH_HISTORY = "PLAYER_NPC_WITH_HISTORY"
+}
