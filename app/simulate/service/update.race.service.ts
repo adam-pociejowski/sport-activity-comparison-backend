@@ -20,6 +20,7 @@ export class UpdateRaceService {
                 .generate(event, config);
         } catch (e) {
             console.log(e);
+            throw e;
         }
     };
 

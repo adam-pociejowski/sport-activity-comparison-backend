@@ -5,7 +5,7 @@ import { MongoModelService } from "../../core/service/mongo.model.service";
 import { Schema } from "mongoose";
 import { ActivityRankingItemInfo } from "../model/activity/activity.ranking.item.info.model";
 
-export class ActivityRankingService extends MongoModelService<ActivityRankingItem<ActivityRankingItemInfo>[]>  {
+export class ActivityRankingService extends MongoModelService<any>  {
 
     constructor() {
         super(
