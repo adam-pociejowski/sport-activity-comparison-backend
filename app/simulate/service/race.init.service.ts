@@ -13,13 +13,11 @@ export class RaceInitService {
     public static INSTANCE = new RaceInitService();
     private constructor() {}
 
-    public init = async (req: InitRaceRequest) => {
-        console.log(`[INIT_RACE]: ${req}`);
-        return this.saveConfiguration(req, (
+    public init = async (req: InitRaceRequest) =>
+        this.saveConfiguration(req, (
             await RidersService
                 .INSTANCE
                 .findByLimit(req.ridersAmount)));
-    }
 
     private saveConfiguration = (param: InitRaceRequest, riders: Rider[]) => {
         let raceId = uuidv4();

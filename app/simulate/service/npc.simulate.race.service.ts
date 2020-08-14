@@ -13,47 +13,43 @@ export class NPCSimulateRaceService implements SimulateRaceService {
     public static INSTANCE = new NPCSimulateRaceService();
     private constructor() {}
 
-    public simulate = (config: RaceConfiguration, request: UpdateRaceRequest) => {
+    public simulate = async (config: RaceConfiguration, request: UpdateRaceRequest) => {
         return new RaceEvent(
             config.raceId,
             request.stageId,
             new Date(),
             request.distance,
             new PlayerEvent(request.location, 10.0, request.time),
-            this.simulateNpcEvents(
+            (await this.simulateNpcEvents(
                 config,
                 request.distance,
                 config
                     .stages
-                    .find((stage: Stage) => stage.stageId === request.stageId)!)
-        );
+                    .find((stage: Stage) => stage.stageId === request.stageId)!)));
     }
 
-    private simulateNpcEvents = (raceConfig: RaceConfiguration, currentDistance: number, stage: Stage) =>
-        raceConfig
+    private simulateNpcEvents = async (config: RaceConfiguration, currentDistance: number, stage: Stage) => {
+        let lastEvent = await this.getLastEvent(config);
+        return config
             .riders
             .map((raceRider: RaceRider) => this.generateNextNpcRiderEvent(
-                this.getLastEvent(
-                    RaceEventService
-                        .INSTANCE
-                        .findPreviousEvents(1, raceConfig.raceId)),
+                lastEvent,
                 raceRider,
-                raceConfig,
+                config,
                 currentDistance,
                 stage));
-
-    private getLastEvent = (events: RaceEvent[]) => events.length == 0 ? null : events[events.length - 1];
+    }
 
     private generateNextNpcRiderEvent = (lastEvent: RaceEvent | null,
                                          raceRider: RaceRider,
                                          raceConfig: RaceConfiguration,
                                          currentDistance: number,
                                          stage: Stage) => {
-        let riderEvent = lastEvent !== undefined ?
+        let riderEvent = lastEvent !== null ?
             this.findNpcRiderEvent(lastEvent!, raceRider)! :
             null;
         let previousTime = riderEvent !== null ? riderEvent.time : 0.0;
-        let previousDistance = lastEvent !== undefined ? lastEvent!.distance : 0.0;
+        let previousDistance = lastEvent !== null ? lastEvent!.distance : 0.0;
         let { velocity, power } = RaceUtils.calculateBaseVelocity(raceConfig, raceRider, riderEvent, stage);
         return new NpcRiderEvent(
             raceRider.rider.riderId,
@@ -66,6 +62,11 @@ export class NPCSimulateRaceService implements SimulateRaceService {
                     RaceUtils.randomDouble(1.0 - raceConfig.riderCurrentConditionVariability, 1.0) * raceRider.raceCondition,
                 raceConfig.maxRiderCurrentConditionChangePerEvent,
                 raceConfig.riderCurrentConditionVariability));
+    }
+
+    private getLastEvent = async (config: RaceConfiguration) => {
+        let events = await RaceEventService.INSTANCE.findPreviousEvents(1, config.raceId);
+        return events.length == 0 ? null : events[events.length - 1];
     }
 
     private findNpcRiderEvent = (event: RaceEvent, rider: RaceRider) =>

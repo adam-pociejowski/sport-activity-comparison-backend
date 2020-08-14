@@ -11,9 +11,9 @@ export class UpdateRaceService {
 
     updateRaceState = async (req: UpdateRaceRequest) => {
         try {
-            console.log(req);
+            // console.log(req);
             let config: RaceConfiguration = await this.findRaceConfig(req.raceId);
-            let event = NPCSimulateRaceService.INSTANCE.simulate(config, req);
+            let event = await NPCSimulateRaceService.INSTANCE.simulate(config, req);
             RaceEventService.INSTANCE.save(event);
             return RaceRankingServiceFactory
                 .fromRankingType(req.rankingType)
