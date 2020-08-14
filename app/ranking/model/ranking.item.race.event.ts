@@ -1,5 +1,5 @@
-import { RankingItemRaceEventType } from "./ranking.item.race.event.type";
-import { Country } from "../../../core/model/country.enum";
+import { RankingItemRaceEventType } from "../enums/ranking.item.race.event.type";
+import { Country } from "../../core/enums/country.enum";
 
 export class RankingItemRaceEvent {
     constructor(public name: string,

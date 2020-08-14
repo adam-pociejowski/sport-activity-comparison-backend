@@ -1,5 +1,5 @@
 import { RaceRankingService } from "./race.ranking.service";
-import { RankingType } from "../model/race/ranking.type";
+import { RankingType } from "../enums/ranking.type";
 import { NPCPlayerRaceRankingService } from "./npc.player.race.ranking.service";
 import { NPCPlayerHistoryRaceRankingService } from "./npc.player.history.race.ranking.service";
 

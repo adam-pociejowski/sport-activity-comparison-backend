@@ -1,4 +1,4 @@
-import { ActivityType } from "./activity.type.enum";
+import { ActivityType } from "../../core/enums/activity.type.enum";
 
 export class ActivityRankingItem<T> {
     constructor(public readonly info: T,

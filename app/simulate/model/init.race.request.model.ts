@@ -1,5 +1,5 @@
-import { ActivityType } from "../../../ranking/model/activity/activity.type.enum";
-import { Stage } from "../config/stage.model";
+import { ActivityType } from "../../core/enums/activity.type.enum";
+import { Stage } from "../../core/model/stage.model";
 
 export class InitRaceRequest {
     constructor(public name: string,

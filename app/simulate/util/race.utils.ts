@@ -1,9 +1,9 @@
-import { RaceRider } from "../model/config/race.rider.model";
-import { Rider } from "../model/config/rider.model";
-import { RiderAbilities } from "../model/config/rider.abilities.model";
-import { RaceConfiguration } from "../model/config/race.configuration.model";
-import { NpcRiderEvent } from "../model/event/npc.rider.event.model";
-import { Stage } from "../model/config/stage.model";
+import { RaceRider } from "../../core/model/race.rider.model";
+import { Rider } from "../../core/model/rider.model";
+import { RiderAbilities } from "../../core/model/rider.abilities.model";
+import { RaceConfiguration } from "../../core/model/race.configuration.model";
+import { NpcRiderEvent } from "../model/npc.rider.event.model";
+import { Stage } from "../../core/model/stage.model";
 
 export class RaceUtils {
     private static BASE_VELOCITY: number = 60.0;

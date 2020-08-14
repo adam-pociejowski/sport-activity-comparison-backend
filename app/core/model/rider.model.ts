@@ -1,5 +1,5 @@
 import { RiderAbilities } from "./rider.abilities.model";
-import { Country } from "../../../core/model/country.enum";
+import { Country } from "../enums/country.enum";
 
 export class Rider {
     constructor(public riderId: string,

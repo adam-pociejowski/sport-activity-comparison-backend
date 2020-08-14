@@ -1,10 +1,10 @@
 import { MongoModelService } from "./mongo.model.service";
 import { Schema } from "mongoose";
-import { RaceConfiguration } from "../../simulate/model/config/race.configuration.model";
-import { Stage } from "../../simulate/model/config/stage.model";
-import { RaceRider } from "../../simulate/model/config/race.rider.model";
+import { RaceConfiguration } from "../model/race.configuration.model";
+import { Stage } from "../model/stage.model";
+import { RaceRider } from "../model/race.rider.model";
 import { RidersService } from "./riders.service";
-import { RiderAbilities } from "../../simulate/model/config/rider.abilities.model";
+import { RiderAbilities } from "../model/rider.abilities.model";
 
 export class RaceConfigurationService extends MongoModelService<RaceConfiguration> {
     public static INSTANCE = new RaceConfigurationService();

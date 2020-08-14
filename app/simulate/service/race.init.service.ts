@@ -1,11 +1,11 @@
-import { InitRaceRequest } from "../model/request/init.race.request.model";
+import { InitRaceRequest } from "../model/init.race.request.model";
 import { v4 as uuidv4 } from "uuid";
-import { Rider } from "../model/config/rider.model";
+import { Rider } from "../../core/model/rider.model";
 import { RidersService } from "../../core/service/riders.service";
-import { RaceConfiguration } from "../model/config/race.configuration.model";
-import { Stage } from "../model/config/stage.model";
-import { ActivityType } from "../../ranking/model/activity/activity.type.enum";
-import { RaceRider } from "../model/config/race.rider.model";
+import { RaceConfiguration } from "../../core/model/race.configuration.model";
+import { Stage } from "../../core/model/stage.model";
+import { ActivityType } from "../../core/enums/activity.type.enum";
+import { RaceRider } from "../../core/model/race.rider.model";
 import { RaceUtils } from "../util/race.utils";
 import { RaceConfigurationService } from "../../core/service/race.configuration.service";
 

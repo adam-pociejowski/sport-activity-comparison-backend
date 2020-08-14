@@ -1,5 +1,5 @@
-import { LocationData } from "../../../ranking/model/activity/location.model";
-import { RankingType } from "../../../ranking/model/race/ranking.type";
+import { LocationData } from "../../core/model/location.model";
+import { RankingType } from "../../ranking/enums/ranking.type";
 
 export class UpdateRaceRequest {
     constructor(public raceId: string,

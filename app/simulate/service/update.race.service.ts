@@ -1,6 +1,6 @@
-import { UpdateRaceRequest } from "../model/request/update.race.request.model";
+import { UpdateRaceRequest } from "../model/update.race.request.model";
 import { RaceConfigurationService } from "../../core/service/race.configuration.service";
-import { RaceConfiguration } from "../model/config/race.configuration.model";
+import { RaceConfiguration } from "../../core/model/race.configuration.model";
 import { RaceEventService } from "../../core/service/race.event.service";
 import { NPCSimulateRaceService } from "./npc.simulate.race.service";
 import { RaceRankingServiceFactory } from "../../ranking/service/race.ranking.service.factory";

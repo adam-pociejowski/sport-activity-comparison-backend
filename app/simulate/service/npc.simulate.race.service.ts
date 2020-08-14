@@ -1,13 +1,13 @@
-import { RaceEvent } from "../model/event/race.event.model";
-import { RaceConfiguration } from "../model/config/race.configuration.model";
-import { UpdateRaceRequest } from "../model/request/update.race.request.model";
-import { PlayerEvent } from "../model/event/player.event.model";
-import { Stage } from "../model/config/stage.model";
+import { RaceEvent } from "../model/race.event.model";
+import { RaceConfiguration } from "../../core/model/race.configuration.model";
+import { UpdateRaceRequest } from "../model/update.race.request.model";
+import { PlayerEvent } from "../model/player.event.model";
+import { Stage } from "../../core/model/stage.model";
 import { SimulateRaceService } from "./simulate.race.service";
-import { RaceRider } from "../model/config/race.rider.model";
+import { RaceRider } from "../../core/model/race.rider.model";
 import { RaceEventService } from "../../core/service/race.event.service";
 import { RaceUtils } from "../util/race.utils";
-import { NpcRiderEvent } from "../model/event/npc.rider.event.model";
+import { NpcRiderEvent } from "../model/npc.rider.event.model";
 
 export class NPCSimulateRaceService implements SimulateRaceService {
     public static INSTANCE = new NPCSimulateRaceService();

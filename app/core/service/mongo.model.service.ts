@@ -16,6 +16,8 @@ export abstract class MongoModelService<T> {
         this.MongoModel(obj)
             .save();
 
+    public getMongoModel = () => this.MongoModel;
+
     public abstract mapToObject(data: any) : T;
 
     protected constructor(schemaName: string, schemaDefinition: Schema) {

@@ -1,4 +1,4 @@
-import { LocationData } from "../../../ranking/model/activity/location.model";
+import { LocationData } from "../../core/model/location.model";
 
 export class PlayerEvent {
     constructor(public location: LocationData,

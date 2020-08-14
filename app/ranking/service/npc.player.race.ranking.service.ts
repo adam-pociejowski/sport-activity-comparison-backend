@@ -1,11 +1,11 @@
-import { RaceEvent } from "../../simulate/model/event/race.event.model";
-import { RankingItemRaceEvent } from "../model/race/ranking.item.race.event";
-import { ActivityRanking } from "../model/activity/activity.ranking.model";
+import { RaceEvent } from "../../simulate/model/race.event.model";
+import { RankingItemRaceEvent } from "../model/ranking.item.race.event";
+import { ActivityRanking } from "../model/activity.ranking.model";
 import { RaceRankingService } from "./race.ranking.service";
-import { RaceConfiguration } from "../../simulate/model/config/race.configuration.model";
+import { RaceConfiguration } from "../../core/model/race.configuration.model";
 import { AbstractRaceRankingService } from "./abstract.race.ranking.service";
-import { RaceRankingItem } from "../model/race/race.ranking.item.model";
-import { RankingType } from "../model/race/ranking.type";
+import { RaceRankingItem } from "../model/race.ranking.item.model";
+import { RankingType } from "../enums/ranking.type";
 
 export class NPCPlayerRaceRankingService extends AbstractRaceRankingService implements RaceRankingService {
     public static INSTANCE = new NPCPlayerRaceRankingService();
@@ -13,13 +13,15 @@ export class NPCPlayerRaceRankingService extends AbstractRaceRankingService impl
         super();
     }
 
-    public generate = (raceEvent: RaceEvent, config: RaceConfiguration): ActivityRanking<RankingItemRaceEvent> =>
-        new ActivityRanking<RankingItemRaceEvent>(
-            new Array<RaceRankingItem>()
-                .concat(this.pushPlayerItem(raceEvent.playerEvent))
-                .concat(this.pushNpcRankingItems(this.prepareRaceRidersMap(config.riders), raceEvent.npcEvents))
-                .map((rankingItem: RaceRankingItem) => this.mapToActivityRankingItem(rankingItem)),
-            raceEvent.distance);
+    public generate = (raceEvent: RaceEvent, config: RaceConfiguration) =>
+        Promise
+            .resolve(
+                new ActivityRanking<RankingItemRaceEvent>(
+                    new Array<RaceRankingItem>()
+                        .concat(this.pushPlayerItem(raceEvent.playerEvent))
+                        .concat(this.pushNpcRankingItems(this.prepareRaceRidersMap(config.riders), raceEvent.npcEvents))
+                        .map((rankingItem: RaceRankingItem) => this.mapToActivityRankingItem(rankingItem)),
+                    raceEvent.distance));
 
     getRankingType = () => RankingType.PLAYER_NPC;
 }

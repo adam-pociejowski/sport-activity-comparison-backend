@@ -1,12 +1,12 @@
-import { PlayerEvent } from "../../simulate/model/event/player.event.model";
-import { RankingItemRaceEvent } from "../model/race/ranking.item.race.event";
-import { RankingItemRaceEventType } from "../model/race/ranking.item.race.event.type";
-import { Country } from "../../core/model/country.enum";
-import { ActivityType } from "../model/activity/activity.type.enum";
-import { RaceRider } from "../../simulate/model/config/race.rider.model";
-import { NpcRiderEvent } from "../../simulate/model/event/npc.rider.event.model";
-import { RaceRankingItem } from "../model/race/race.ranking.item.model";
-import {ActivityRankingItem} from "../model/activity/activity.ranking.item.model";
+import { PlayerEvent } from "../../simulate/model/player.event.model";
+import { RankingItemRaceEvent } from "../model/ranking.item.race.event";
+import { RankingItemRaceEventType } from "../enums/ranking.item.race.event.type";
+import { Country } from "../../core/enums/country.enum";
+import { ActivityType } from "../../core/enums/activity.type.enum";
+import { RaceRider } from "../../core/model/race.rider.model";
+import { NpcRiderEvent } from "../../simulate/model/npc.rider.event.model";
+import { RaceRankingItem } from "../model/race.ranking.item.model";
+import {ActivityRankingItem} from "../model/activity.ranking.item.model";
 
 export abstract class AbstractRaceRankingService {
 

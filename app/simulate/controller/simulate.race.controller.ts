@@ -1,8 +1,8 @@
 import * as express from "express";
 import { UpdateRaceService } from "../service/update.race.service";
 import { Request, Response } from "express";
-import { ActivityRanking } from "../../ranking/model/activity/activity.ranking.model";
-import { RankingItemRaceEvent } from "../../ranking/model/race/ranking.item.race.event";
+import { ActivityRanking } from "../../ranking/model/activity.ranking.model";
+import { RankingItemRaceEvent } from "../../ranking/model/ranking.item.race.event";
 import { RaceInitService } from "../service/race.init.service";
 
 export class SimulateRaceController {

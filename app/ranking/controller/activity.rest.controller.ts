@@ -1,16 +1,14 @@
 import { Request, Response } from "express";
 import * as express from 'express';
-import { ActivityRankingRequest } from "../model/activity/activity.ranking.request.model";
-import { ActivityRankingService } from "../service/activity.ranking.service";
-import { ActivityRankingItem } from "../model/activity/activity.ranking.item.model";
-import { ActivityRanking } from "../model/activity/activity.ranking.model";
-import { ActivityType } from "../model/activity/activity.type.enum";
-import { ActivityRankingItemInfo } from "../model/activity/activity.ranking.item.info.model";
+import { UserRankingRequest } from "../../history/model/user.ranking.request.model";
+import { ActivityRankingItem } from "../model/activity.ranking.item.model";
+import { ActivityRanking } from "../model/activity.ranking.model";
+import { ActivityType } from "../../core/enums/activity.type.enum";
+import { ActivityRankingItemInfo } from "../model/activity.ranking.item.info.model";
+import { SimpleUserHistoryService } from "../../history/service/simple.user.history.service";
 
 export class ActivityRestController {
     public router = express.Router();
-    private activityRankingService = new ActivityRankingService();
-
     constructor() {
         this.initRoutes();
     }
@@ -21,10 +19,14 @@ export class ActivityRestController {
 
     private getResultRanking = (request: Request, response: Response) => {
         try {
-            let activityRequest = new ActivityRankingRequest(request.params.activityType as ActivityType, +request.params.distance);
-            this.activityRankingService
-                .getResultRanking(activityRequest)
-                .then((ranking: ActivityRankingItem<ActivityRankingItemInfo>[] | void) => new ActivityRanking(ranking, activityRequest.distance))
+            let req = new UserRankingRequest(
+                request.params.activityType as ActivityType,
+                +request.params.distance,
+                0.0);
+            SimpleUserHistoryService
+                .INSTANCE
+                .find(req)
+                .then((ranking: ActivityRankingItem<ActivityRankingItemInfo>[] | void) => new ActivityRanking(ranking, req.distance))
                 .then((ranking: ActivityRanking<ActivityRankingItemInfo> | void) => response.send(ranking))
                 .catch((e: any) => {
                     console.log('Exception while aggregating data', e);
