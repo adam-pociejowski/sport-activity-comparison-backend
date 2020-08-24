@@ -8,6 +8,12 @@ import { Stage } from "../../core/model/stage.model";
 export class RaceUtils {
     private static BASE_VELOCITY: number = 60.0;
 
+    public static findStage = (config: RaceConfiguration,
+                               stageId: string) =>
+        config
+            .stages
+            .find((stage: Stage) => stage.stageId === stageId)!;
+
     public static calculateTimeInSeconds = (movedDistance: number,
                                             velocity: number) =>
         ((movedDistance / 1000.0) / velocity) * 3600.0;

@@ -13,19 +13,19 @@ export class NPCSimulateRaceService implements SimulateRaceService {
     public static INSTANCE = new NPCSimulateRaceService();
     private constructor() {}
 
-    public simulate = async (config: RaceConfiguration, request: UpdateRaceRequest) => {
+    public simulate = async (config: RaceConfiguration,
+                             stage: Stage,
+                             request: UpdateRaceRequest) => {
         return new RaceEvent(
             config.raceId,
-            request.stageId,
+            stage.stageId,
             new Date(),
             request.distance,
             new PlayerEvent(request.location, 10.0, request.time),
             (await this.simulateNpcEvents(
                 config,
                 request.distance,
-                config
-                    .stages
-                    .find((stage: Stage) => stage.stageId === request.stageId)!)));
+                stage)));
     }
 
     private simulateNpcEvents = async (config: RaceConfiguration, currentDistance: number, stage: Stage) => {

@@ -9,6 +9,7 @@ import { RankingType } from "../enums/ranking.type";
 import { RaceUserHistoryService } from "../../history/service/race.user.history.service";
 import { Stage } from "../../core/model/stage.model";
 import { UserRankingRequest } from "../../history/model/user.ranking.request.model";
+import { RaceStatus } from "../../core/enums/race.status";
 
 export class NPCPlayerHistoryRaceRankingService extends AbstractRaceRankingService implements RaceRankingService {
     public static INSTANCE = new NPCPlayerHistoryRaceRankingService();
@@ -16,13 +17,14 @@ export class NPCPlayerHistoryRaceRankingService extends AbstractRaceRankingServi
         super();
     }
 
-    public generate = async (event: RaceEvent, cfg: RaceConfiguration) =>
+    public generate = async (event: RaceEvent, status: RaceStatus, cfg: RaceConfiguration) =>
         new ActivityRanking<RankingItemRaceEvent>(
             new Array<RaceRankingItem>()
                 .concat(this.pushPlayerItem(event.playerEvent))
                 .concat(this.pushNpcRankingItems(this.prepareRaceRidersMap(cfg.riders), event.npcEvents))
                 .concat((await this.pushPlayerHistoryItems(event.distance, cfg.stages.find((s: Stage) => s.stageId == event.stageId)!)))
                 .map((rankingItem: RaceRankingItem) => this.mapToActivityRankingItem(rankingItem)),
+            status,
             event.distance);
 
     private pushPlayerHistoryItems = (distance: number, stage: Stage) =>

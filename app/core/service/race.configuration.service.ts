@@ -5,12 +5,28 @@ import { Stage } from "../model/stage.model";
 import { RaceRider } from "../model/race.rider.model";
 import { RidersService } from "./riders.service";
 import { RiderAbilities } from "../model/rider.abilities.model";
+import { RaceStatus } from "../enums/race.status";
 
 export class RaceConfigurationService extends MongoModelService<RaceConfiguration> {
     public static INSTANCE = new RaceConfigurationService();
     private constructor() {
         super('race-configurations', RaceConfigurationService.getSchema());
     }
+
+    public updateRaceStatus = (raceId: string,
+                               status: RaceStatus) =>
+        this.MongoModel
+            .updateOne({ raceId: raceId }, { status: status });
+
+    public updateStageStatus = (raceId: string,
+                                stageId: string,
+                                status: RaceStatus) =>
+        this.MongoModel
+            .updateOne(
+                { raceId: raceId },
+                {[`stages.$[stage].${'status'}`]: status},
+                { "arrayFilters": [{ "stage.stageId": stageId }] }
+            );
 
     mapToObject = (data: any) =>
         new RaceConfiguration(
@@ -20,6 +36,7 @@ export class RaceConfigurationService extends MongoModelService<RaceConfiguratio
             data.startDate,
             data.finishDate,
             data.difficulty,
+            data.status,
             data.riderCurrentConditionVariability,
             data.maxRiderCurrentConditionChangePerEvent,
             data.randomFactorVariability,
@@ -34,7 +51,8 @@ export class RaceConfigurationService extends MongoModelService<RaceConfiguratio
                         stage.abilitiesFactor.hill,
                         stage.abilitiesFactor.timeTrial
                     ),
-                    stage.activityType)),
+                    stage.activityType,
+                    stage.status)),
             data.riders.map((raceRider: any) =>
                 new RaceRider(
                     RidersService.INSTANCE.mapToObject(raceRider.rider),
@@ -49,6 +67,7 @@ export class RaceConfigurationService extends MongoModelService<RaceConfiguratio
             startDate: Date,
             finishDate: Date,
             difficulty: Number,
+            status: String,
             riderCurrentConditionVariability: Number,
             maxRiderCurrentConditionChangePerEvent: Number,
             randomFactorVariability: Number,
@@ -63,7 +82,8 @@ export class RaceConfigurationService extends MongoModelService<RaceConfiguratio
                         hill: Number,
                         timeTrial: Number
                     },
-                    activityType: String
+                    activityType: String,
+                    status: String
                 }
             ],
             riders: [

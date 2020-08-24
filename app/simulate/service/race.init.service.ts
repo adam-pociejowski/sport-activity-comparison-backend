@@ -8,6 +8,7 @@ import { ActivityType } from "../../core/enums/activity.type.enum";
 import { RaceRider } from "../../core/model/race.rider.model";
 import { RaceUtils } from "../util/race.utils";
 import { RaceConfigurationService } from "../../core/service/race.configuration.service";
+import { RaceStatus } from "../../core/enums/race.status";
 
 export class RaceInitService {
     public static INSTANCE = new RaceInitService();
@@ -31,6 +32,7 @@ export class RaceInitService {
                     null,
                     null,
                     param.difficulty,
+                    RaceStatus.NOT_STARTED,
                     param.riderCurrentConditionVariability,
                     param.maxRiderCurrentConditionChangePerEvent,
                     param.randomFactorVariability,
@@ -42,7 +44,8 @@ export class RaceInitService {
                                 `${raceId}_${uuidv4()}`,
                                 stage.distance,
                                 stage.abilitiesFactor,
-                                ActivityType.OUTDOOR_RIDE)),
+                                ActivityType.OUTDOOR_RIDE,
+                                RaceStatus.NOT_STARTED)),
                     riders
                         .map((rider: Rider) =>
                             new RaceRider(rider, RaceUtils.randomDouble(1.0 - param.riderRaceConditionVariability, 1.0)))

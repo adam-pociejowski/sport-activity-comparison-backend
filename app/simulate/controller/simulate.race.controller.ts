@@ -15,6 +15,7 @@ export class SimulateRaceController {
     private initRoutes = () => {
         this.router.post('/init', this.initRace);
         this.router.post('/update', this.updateRace);
+        this.router.get('/:raceId/stage/:stageId/start', this.startStage);
     };
 
     private initRace = (request: Request, response: Response) =>
@@ -24,11 +25,17 @@ export class SimulateRaceController {
             .then((doc: any) => response.send(doc))
             .catch((error: any) => response.send(error));
 
-    private updateRace = (request: Request, response: Response) => {
+    private startStage = (request: Request, response: Response) =>
+        UpdateRaceService
+            .INSTANCE
+            .startStage(request.params.raceId, request.params.stageId)
+            .then(() => response.send('OK'))
+            .catch((error: any) => response.send(error));
+
+    private updateRace = (request: Request, response: Response) =>
         UpdateRaceService
             .INSTANCE
             .updateRaceState(request.body)
             .then((ranking: ActivityRanking<RankingItemRaceEvent>) => response.send(ranking))
             .catch((error: any) => response.send(error));
-    }
 }

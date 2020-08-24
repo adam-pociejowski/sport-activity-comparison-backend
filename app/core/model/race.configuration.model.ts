@@ -1,5 +1,6 @@
 import { RaceRider } from "./race.rider.model";
 import { Stage } from "./stage.model";
+import { RaceStatus } from "../enums/race.status";
 
 export class RaceConfiguration {
     constructor(public raceId: string,
@@ -8,6 +9,7 @@ export class RaceConfiguration {
                 public startDate: Date | null,
                 public finishDate: Date | null,
                 public difficulty: number,
+                public status: RaceStatus,
                 public riderCurrentConditionVariability: number,
                 public maxRiderCurrentConditionChangePerEvent: number,
                 public randomFactorVariability: number,
