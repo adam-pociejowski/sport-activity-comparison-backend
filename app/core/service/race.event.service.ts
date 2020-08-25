@@ -12,9 +12,9 @@ export class RaceEventService extends MongoModelService<RaceEvent>  {
         super('race-events', RaceEventService.getSchema());
     }
 
-    public findPreviousEvents = (limit: number, raceId: string) =>
+    public findPreviousEvents = (limit: number, raceId: string, stageId: string) =>
         this.MongoModel
-            .find({"raceId": raceId})
+            .find({"raceId": raceId, "stageId": stageId})
             .sort({"distance": -1})
             .limit(limit)
             .then((data: any[]) => data.map((item: any) => this.mapToObject(item)));
@@ -44,6 +44,7 @@ export class RaceEventService extends MongoModelService<RaceEvent>  {
                         event.power,
                         event.currentCondition,
                     )));
+
 
     private static getSchema() {
         return new Schema({

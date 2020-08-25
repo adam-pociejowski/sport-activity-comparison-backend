@@ -1,4 +1,3 @@
-import { PlayerEvent } from "../../simulate/model/player.event.model";
 import { RankingItemRaceEvent } from "../model/ranking.item.race.event";
 import { RankingItemRaceEventType } from "../enums/ranking.item.race.event.type";
 import { Country } from "../../core/enums/country.enum";
@@ -6,7 +5,7 @@ import { ActivityType } from "../../core/enums/activity.type.enum";
 import { RaceRider } from "../../core/model/race.rider.model";
 import { NpcRiderEvent } from "../../simulate/model/npc.rider.event.model";
 import { RaceRankingItem } from "../model/race.ranking.item.model";
-import {ActivityRankingItem} from "../model/activity.ranking.item.model";
+import { ActivityRankingItem } from "../model/activity.ranking.item.model";
 
 export abstract class AbstractRaceRankingService {
 
@@ -17,7 +16,7 @@ export abstract class AbstractRaceRankingService {
         return raceRidersMap;
     }
 
-    protected pushPlayerItem = (playerEvent: PlayerEvent) => {
+    protected pushPlayerItem = (time: number) => {
         return [
             new RaceRankingItem(
                 new RankingItemRaceEvent(
@@ -27,7 +26,7 @@ export abstract class AbstractRaceRankingService {
                     Country.POL
                 ),
                 ActivityType.OUTDOOR_RIDE,
-                playerEvent.time
+                time
             )
         ];
     }

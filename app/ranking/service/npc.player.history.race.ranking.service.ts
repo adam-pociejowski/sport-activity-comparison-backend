@@ -20,7 +20,7 @@ export class NPCPlayerHistoryRaceRankingService extends AbstractRaceRankingServi
     public generate = async (event: RaceEvent, status: RaceStatus, cfg: RaceConfiguration) =>
         new ActivityRanking<RankingItemRaceEvent>(
             new Array<RaceRankingItem>()
-                .concat(this.pushPlayerItem(event.playerEvent))
+                .concat(this.pushPlayerItem(event.playerEvent.time))
                 .concat(this.pushNpcRankingItems(this.prepareRaceRidersMap(cfg.riders), event.npcEvents))
                 .concat((await this.pushPlayerHistoryItems(event.distance, cfg.stages.find((s: Stage) => s.stageId == event.stageId)!)))
                 .map((rankingItem: RaceRankingItem) => this.mapToActivityRankingItem(rankingItem)),

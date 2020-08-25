@@ -1,9 +1,9 @@
-import {UpdateRaceRequest} from "../model/update.race.request.model";
-import {RaceConfigurationService} from "../../core/service/race.configuration.service";
-import {RaceConfiguration} from "../../core/model/race.configuration.model";
-import {RaceEventService} from "../../core/service/race.event.service";
-import {NPCSimulateRaceService} from "./npc.simulate.race.service";
-import { RaceRankingServiceFactory} from "../../ranking/service/race.ranking.service.factory";
+import { UpdateRaceRequest } from "../model/update.race.request.model";
+import { RaceConfigurationService } from "../../core/service/race.configuration.service";
+import { RaceConfiguration } from "../../core/model/race.configuration.model";
+import { RaceEventService } from "../../core/service/race.event.service";
+import { NPCSimulateRaceService } from "./npc.simulate.race.service";
+import { RaceRankingServiceFactory } from "../../ranking/service/race.ranking.service.factory";
 import { RaceStatus} from "../../core/enums/race.status";
 import { RaceUtils} from "../util/race.utils";
 import { RankingType} from "../../ranking/enums/ranking.type";
@@ -33,7 +33,7 @@ export class UpdateRaceService {
                 }
                 return this.generateRanking(req.rankingType, RaceStatus.IN_PROGRESS, config, event);
             }
-            console.log(`Stage already finished. Race: ${req.raceId}, stage: ${req.stageId}`);
+            throw new Error(`Stage already finished. Race: ${req.raceId}, stage: ${req.stageId}`);
         } catch (e) {
             console.log(e);
             throw e;

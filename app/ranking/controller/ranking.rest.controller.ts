@@ -6,16 +6,28 @@ import { ActivityRanking } from "../model/activity.ranking.model";
 import { ActivityType } from "../../core/enums/activity.type.enum";
 import { ActivityRankingItemInfo } from "../model/activity.ranking.item.info.model";
 import { SimpleUserHistoryService } from "../../history/service/simple.user.history.service";
+import { RankingService } from "../service/ranking.service";
+import { RankingType } from "../enums/ranking.type";
+import { RankingItemRaceEvent } from "../model/ranking.item.race.event";
+import { RaceStatus } from "../../core/enums/race.status";
 
-export class ActivityRestController {
+export class RankingRestController {
     public router = express.Router();
     constructor() {
         this.initRoutes();
     }
 
     private initRoutes = () => {
-        this.router.get('/ranking/:activityType/:distance', this.getResultRanking);
+        this.router.get('/:activityType/:distance', this.getResultRanking);
+        this.router.get('/:raceId/:stageId/:rankingType', this.getRaceRanking);
     };
+
+    private getRaceRanking = (req: Request, response: Response) =>
+        RankingService
+            .INSTANCE
+            .getRanking(req.params.raceId, req.params.stageId, req.params.rankingType as RankingType)
+            .then((ranking: ActivityRanking<RankingItemRaceEvent>) => response.send(ranking))
+            .catch((e: any) => response.send(e));
 
     private getResultRanking = (request: Request, response: Response) => {
         try {
@@ -26,7 +38,7 @@ export class ActivityRestController {
             SimpleUserHistoryService
                 .INSTANCE
                 .find(req)
-                .then((ranking: ActivityRankingItem<ActivityRankingItemInfo>[] | void) => new ActivityRanking(ranking, req.distance))
+                .then((ranking: ActivityRankingItem<ActivityRankingItemInfo>[] | void) => new ActivityRanking(ranking, RaceStatus.IN_PROGRESS, req.distance))
                 .then((ranking: ActivityRanking<ActivityRankingItemInfo> | void) => response.send(ranking))
                 .catch((e: any) => {
                     console.log('Exception while aggregating data', e);

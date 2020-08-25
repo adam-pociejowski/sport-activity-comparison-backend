@@ -19,7 +19,7 @@ export class NPCPlayerRaceRankingService extends AbstractRaceRankingService impl
             .resolve(
                 new ActivityRanking<RankingItemRaceEvent>(
                     new Array<RaceRankingItem>()
-                        .concat(this.pushPlayerItem(raceEvent.playerEvent))
+                        .concat(this.pushPlayerItem(raceEvent.playerEvent.time))
                         .concat(this.pushNpcRankingItems(this.prepareRaceRidersMap(config.riders), raceEvent.npcEvents))
                         .map((rankingItem: RaceRankingItem) => this.mapToActivityRankingItem(rankingItem)),
                     status,

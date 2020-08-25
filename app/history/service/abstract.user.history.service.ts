@@ -8,13 +8,6 @@ export abstract class AbstractUserHistoryService<T> implements UserHistoryServic
 
     protected abstract mapToInfo(obj: any): T;
 
-    // public find = (req: UserRankingRequest) =>
-    //     ActivityService
-    //         .INSTANCE
-    //         .getMongoModel()
-    //         .aggregate(this.preparePipeline(req))
-    //         .then((data: any[]) => data.map((item: any) => this.mapToObject(item)));
-
     public find = async (req: UserRankingRequest) => {
         let res = await ActivityService
             .INSTANCE
@@ -22,15 +15,7 @@ export abstract class AbstractUserHistoryService<T> implements UserHistoryServic
             .aggregate(this.preparePipeline(req));
         return res
             .map((item: any) => this.mapToObject(item));
-
-
-        // let res = ActivityService
-        //     .INSTANCE
-        //     .getMongoModel()
-        //     .aggregate(this.preparePipeline(req))
-        //     .then((data: any[]) => data.map((item: any) => this.mapToObject(item)));
     }
-
 
     private mapToObject = (item: any) =>
         new ActivityRankingItem<T>(

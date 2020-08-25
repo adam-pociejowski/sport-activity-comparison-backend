@@ -4,9 +4,15 @@ import { RiderAbilities } from "../../core/model/rider.abilities.model";
 import { RaceConfiguration } from "../../core/model/race.configuration.model";
 import { NpcRiderEvent } from "../model/npc.rider.event.model";
 import { Stage } from "../../core/model/stage.model";
+import {RaceEventService} from "../../core/service/race.event.service";
 
 export class RaceUtils {
     private static BASE_VELOCITY: number = 60.0;
+
+    public static getLastEvent = async (raceId: string, stageId: string) => {
+        let events = await RaceEventService.INSTANCE.findPreviousEvents(1, raceId, stageId);
+        return events.length == 0 ? null : events[events.length - 1];
+    }
 
     public static findStage = (config: RaceConfiguration,
                                stageId: string) =>
