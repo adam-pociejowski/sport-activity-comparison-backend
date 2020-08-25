@@ -814,5 +814,77 @@
       "hill": 74,
       "timeTrial": 67
     }
+  },
+  {
+    "riderId": "89d4fa44-3291-433f-96f7-b18a34e658d7",
+    "firstName": "Stefano",
+    "lastName": "Garzeli",
+    "country": "ITA",
+    "abilities": {
+      "flat": 66,
+      "mountain": 77,
+      "hill": 75,
+      "timeTrial": 65
+    }
+  },
+  {
+    "riderId": "098257b9-a320-4ee9-a55f-5e09e1f0e73c",
+    "firstName": "Sep",
+    "lastName": "Vanmarcke",
+    "country": "BEL",
+    "abilities": {
+      "flat": 82,
+      "mountain": 61,
+      "hill": 69,
+      "timeTrial": 73
+    }
+  },
+  {
+    "riderId": "f4d86efc-a171-419d-acaf-7addbd6f6e36",
+    "firstName": "Nicki",
+    "lastName": "Terpstra",
+    "country": "NED",
+    "abilities": {
+      "flat": 81,
+      "mountain": 60,
+      "hill": 65,
+      "timeTrial": 71
+    }
+  },
+  {
+    "riderId": "5969d761-eda9-4d20-a1ef-0093aa7784fd",
+    "firstName": "Greg Van",
+    "lastName": "Avermaet",
+    "country": "BEL",
+    "abilities": {
+      "flat": 79,
+      "mountain": 65,
+      "hill": 78,
+      "timeTrial": 68
+    }
+  },
+  {
+    "riderId": "1a8adfb7-3dd4-42cf-844e-f425209a89d4",
+    "firstName": "Zdenek",
+    "lastName": "Stybar",
+    "country": "CZE",
+    "abilities": {
+      "flat": 80,
+      "mountain": 63,
+      "hill": 72,
+      "timeTrial": 76
+    }
+  },
+  {
+    "riderId": "b99e6e7f-7260-4636-aed5-0937131d2590",
+    "firstName": "Alexander",
+    "lastName": "Kristoff",
+    "country": "NOR",
+    "abilities": {
+      "flat": 78,
+      "mountain": 61,
+      "hill": 71,
+      "timeTrial": 68
+    }
   }
 ]

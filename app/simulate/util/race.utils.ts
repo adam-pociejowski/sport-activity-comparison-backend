@@ -8,6 +8,7 @@ import {RaceEventService} from "../../core/service/race.event.service";
 
 export class RaceUtils {
     private static BASE_VELOCITY: number = 60.0;
+    private static MAX_RIDER_ABILITY_AMOUNT: number = 82.0;
 
     public static getLastEvent = async (raceId: string, stageId: string) => {
         let events = await RaceEventService.INSTANCE.findPreviousEvents(1, raceId, stageId);
@@ -43,7 +44,7 @@ export class RaceUtils {
                                            event: NpcRiderEvent | null,
                                            stage: Stage) => {
         let power = RaceUtils
-            .applyScatterFactor(
+            .applyScatter(
                 RaceUtils
                     .randomRiderFactorsProduct(
                         config,
@@ -55,16 +56,14 @@ export class RaceUtils {
         return {
             velocity: RaceUtils.BASE_VELOCITY *
                 config.difficulty *
-                RaceUtils.applyScatterFactor(
-                    RaceUtils.calculateRiderAbilityFactor(rider.rider, stage),
-                    config.resultsScattering) *
+                RaceUtils.calcRiderAbilityFactor(rider.rider, stage) *
                 power,
             power: power
         };
     }
 
-    private static applyScatterFactor = (factor: number,
-                                         scatterFactor: number) => {
+    private static applyScatter = (factor: number,
+                                   scatterFactor: number) => {
         let result = factor < 1.0 ?
             1.0 - (1.0 - factor) * scatterFactor :
             1.0 + (factor - 1.0) * scatterFactor;
@@ -78,12 +77,20 @@ export class RaceUtils {
         RaceUtils.randomDouble(1.0 - config.randomFactorVariability, 1.0) *
         currentRiderCondition;
 
-    private static calculateRiderAbilityFactor = (rider: Rider, stage: Stage) =>
-        RaceUtils.getAbilityFactor(rider.abilities, stage.abilitiesFactor) / 75.0;
+    private static calcRiderAbilityFactor = (rider: Rider, stage: Stage) => {
+        let factorsSum = RaceUtils.sumAbilityFactors(stage.abilitiesFactor);
+        let baseAbilityFactor = RaceUtils.calcAbilityFactorProduct(rider.abilities, stage.abilitiesFactor) /
+            factorsSum /
+            RaceUtils.MAX_RIDER_ABILITY_AMOUNT;
+        return RaceUtils.applyScatter(baseAbilityFactor, factorsSum);
+    }
 
-    private static getAbilityFactor = (abilities: RiderAbilities, factors: RiderAbilities) =>
+    private static calcAbilityFactorProduct = (abilities: RiderAbilities, factors: RiderAbilities) =>
             (abilities.flat * factors.flat +
             abilities.mountain * factors.mountain +
             abilities.hill * factors.hill +
-            abilities.timeTrial * factors.timeTrial) / 4;
+            abilities.timeTrial * factors.timeTrial);
+
+    private static sumAbilityFactors = (factors: RiderAbilities) =>
+        factors.flat + factors.mountain + factors.hill + factors.timeTrial;
 }
