@@ -21,7 +21,7 @@
     "mongodb": "^3.5.9",
     "mongoose": "^5.9.23",
     "morgan": "^1.9.1",
-    "pug": "2.0.0-beta11",
+    "pug": "3.0.1",
     "ts-node-dev": "^1.0.0-pre.50",
     "typescript": "^3.9.6",
     "uuid": "^8.2.0"
